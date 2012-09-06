@@ -30,8 +30,10 @@
     // Easy access to test Flash over HTML5. Add ?flash to URL
     if (window.location.href.indexOf("?flash") !== -1) {
       _V_.options.techOrder = ["flash"];
-      _V_.options.flash.swf = "tech/flash/video-js.swf";
     }
+    // Probably need to add a Flash exception if running locally
+    // http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html
+    _V_.options.flash.swf = "tech/flash/video-js.swf";
   </script>
 
 </head>

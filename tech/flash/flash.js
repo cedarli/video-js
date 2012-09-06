@@ -5,6 +5,8 @@ _V_.flash = _V_.PlaybackTech.extend({
   init: function(player, options){
     this.player = player;
 
+    _V_.log(options.source)
+
     var source = options.source,
 
         // Which element to embed in
@@ -28,8 +30,10 @@ _V_.flash = _V_.PlaybackTech.extend({
           errorEventProxyFunction: "_V_.flash.onError",
 
           // Player Settings
-          autoplay: playerOptions.autoplay,
-          preload: playerOptions.preload,
+          // autoplay: playerOptions.autoplay,
+          // preload: playerOptions.preload,
+          // autoplay: true,
+          preload: false,
           loop: playerOptions.loop,
           muted: playerOptions.muted
 
@@ -52,6 +56,7 @@ _V_.flash = _V_.PlaybackTech.extend({
     // If source was supplied pass as a flash var.
     if (source) {
       flashVars.src = encodeURIComponent(_V_.getAbsoluteURL(source.src));
+      // flashVars.src = source.src;
     }
 
     // Add placeholder to player div
@@ -87,7 +92,7 @@ _V_.flash = _V_.PlaybackTech.extend({
     //    Not sure why that even works, but it causes the browser to look like it's continuously trying to load the page.
     // Firefox 3.6 keeps calling the iframe onload function anytime I write to it, causing an endless loop.
 
-    if (options.iFrameMode === true && !_V_.isFF) {
+    if (options.iFrameMode === true && !_V_.isFF()) {
 
       // Create iFrame with vjs-tech class so it's 100% width/height
       var iFrm = _V_.createElement("iframe", {
@@ -208,7 +213,7 @@ _V_.flash = _V_.PlaybackTech.extend({
 
   // setupTriggers: function(){}, // Using global onEvent func to distribute events
 
-  play: function(){ this.el.vjs_play(); },
+  play: function(){ _V_.log("****** Flash Play"); this.el.vjs_play(); },
   pause: function(){ this.el.vjs_pause(); },
   src: function(src){
     // Make sure source URL is abosolute.
@@ -286,7 +291,8 @@ _V_.flash.prototype.support = {
     "video/flv": "FLV",
     "video/x-flv": "FLV",
     "video/mp4": "MP4",
-    "video/m4v": "MP4"
+    "video/m4v": "MP4",
+    "application/x-mpegURL": "HLS"
   },
 
   // Optional events that we can manually mimic with timers
@@ -301,6 +307,8 @@ _V_.flash.prototype.support = {
 };
 
 _V_.flash.onReady = function(currSwf){
+
+  _V_.log("Flash Ready", currSwf)
 
   var el = _V_.el(currSwf);
 
@@ -344,14 +352,19 @@ _V_.flash.checkReady = function(tech){
 // Trigger events from the swf on the player
 _V_.flash.onEvent = function(swfID, eventName){
   var player = _V_.el(swfID).player;
+
+                      _V_.log("Flash Event", eventName, swfID, player);
+
   player.triggerEvent(eventName);
 };
 
 // Log errors from the swf
 _V_.flash.onError = function(swfID, err){
   var player = _V_.el(swfID).player;
+  
+                              _V_.log("Flash Error", err, swfID, player);
+
   player.triggerEvent("error");
-  _V_.log("Flash Error", err, swfID);
 };
 
 // Flash Version Check
