@@ -1,6 +1,7 @@
 goog.provide('vjs.Player');
 
 goog.require('vjs.Component');
+goog.require('vjs.MediaLoader');
 
 /**
  * Main player class. A player instance is returned by _V_(id);
@@ -542,21 +543,21 @@ vjs.Player.prototype.bufferedPercent = function(){
   return (this.duration()) ? this.buffered().end(0) / this.duration() : 0;
 };
 
+vjs.Player.prototype.volume_ = 1;
+
 // http://dev.w3.org/html5/spec/video.html#dom-media-volume
 vjs.Player.prototype.volume = function(percentAsDecimal){
   var vol;
 
   if (percentAsDecimal !== undefined) {
     vol = Math.max(0, Math.min(1, parseFloat(percentAsDecimal))); // Force value to between 0 and 1
-    this.cache_.volume = vol;
-    this.techCall('setVolume', vol);
+    this.volume_ = vol;
     vjs.setLocalStorage('volume', vol);
+    this.trigger('dovolume');
     return this;
   }
 
-  // Default to 1 when returning current volume.
-  vol = parseFloat(this.techGet('volume'));
-  return (isNaN(vol)) ? 1 : vol;
+  return this.volume_;
 };
 
 // http://dev.w3.org/html5/spec/video.html#attr-media-muted
@@ -940,34 +941,5 @@ vjs.Player.prototype.ended = function(){ return this.techGet('ended'); };
   }
 
 })();
-
-/**
- * @constructor
- */
-vjs.MediaLoader = function(player, options, ready){
-  vjs.Component.call(this, player, options, ready);
-
-  // If there are no sources when the player is initialized,
-  // load the first supported playback technology.
-  if (!player.options_['sources'] || player.options_['sources'].length === 0) {
-    for (var i=0,j=player.options_['techOrder']; i<j.length; i++) {
-      var techName = vjs.capitalize(j[i]),
-          tech = window['videojs'][techName];
-
-      // Check if the browser supports this technology
-      if (tech && tech.isSupported()) {
-        player.loadTech(techName);
-        break;
-      }
-    }
-  } else {
-    // // Loop through playback technologies (HTML5, Flash) and check for support.
-    // // Then load the best source.
-    // // A few assumptions here:
-    // //   All playback technologies respect preload false.
-    player.src(player.options_['sources']);
-  }
-};
-goog.inherits(vjs.MediaLoader, vjs.Component);
 
 

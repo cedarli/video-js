@@ -374,8 +374,8 @@ vjs.Component.prototype.buildCSSClass = function(){
  * @param  {Function} fn   Event listener
  * @return {vjs.Component}
  */
-vjs.Component.prototype.on = function(type, fn){
-  vjs.on(this.el_, type, vjs.bind(this, fn));
+vjs.Component.prototype.on = function(type, fn, context){
+  vjs.on(this.el_, type, fn, context || this);
   return this;
 };
 
@@ -396,8 +396,8 @@ vjs.Component.prototype.off = function(type, fn){
  * @param  {Function} fn   Event listener
  * @return {vjs.Component}
  */
-vjs.Component.prototype.one = function(type, fn) {
-  vjs.one(this.el_, type, vjs.bind(this, fn));
+vjs.Component.prototype.one = function(type, fn, context) {
+  vjs.one(this.el_, type, fn, context || this);
   return this;
 };
 

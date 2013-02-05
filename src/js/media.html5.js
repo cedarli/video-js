@@ -43,6 +43,11 @@ vjs.Html5 = function(player, options, ready){
 
   this.setupTriggers();
 
+  player.on('dovolume', function(){
+    console.log('dovolume', this.player_.volume());
+    this.el_.volume = this.player_.volume();
+  });
+
   this.triggerReady();
 };
 goog.inherits(vjs.Html5, vjs.MediaTechController);

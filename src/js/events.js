@@ -18,7 +18,7 @@ goog.require('vjs');
  * @param  {String}   type Type of event to bind to.
  * @param  {Function} fn   Event listener.
  */
-vjs.on = function(elem, type, fn){
+vjs.on = function(elem, type, fn, context){
   var data = vjs.getData(elem);
 
   // We need a place to store all our handler data
@@ -27,6 +27,10 @@ vjs.on = function(elem, type, fn){
   if (!data.handlers[type]) data.handlers[type] = [];
 
   if (!fn.guid) fn.guid = vjs.guid++;
+
+  // Bind context to function.
+  // fn.guid is passed to the new function by bind
+  if (context) fn = vjs.bind(context, fn);
 
   data.handlers[type].push(fn);
 
@@ -315,9 +319,9 @@ vjs.trigger = function(elem, event) {
  * @param  {Function} fn   [description]
  * @return {[type]}
  */
-vjs.one = function(elem, type, fn) {
+vjs.one = function(elem, type, fn, context) {
   vjs.on(elem, type, function(){
     vjs.off(elem, type, arguments.callee);
     fn.apply(this, arguments);
-  });
+  }, context);
 };

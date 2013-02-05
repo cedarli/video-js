@@ -14,6 +14,7 @@ goog.require('vjs.Flash');
 goog.require('vjs.TextTrack');
 goog.require('vjs.autoSetup');
 goog.require('vjs.plugin');
+goog.require('vjs.MediaLoader');
 
 /**
  * vjs (internal only) = videojs = _V_ (external only)
