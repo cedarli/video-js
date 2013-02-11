@@ -364,7 +364,8 @@ vjs.CurrentTimeDisplay.prototype.createEl = function(){
 
 vjs.CurrentTimeDisplay.prototype.updateContent = function(){
   // Allows for smooth scrubbing, when player can't keep up.
-  var time = (this.player_.scrubbing) ? this.player_.getCache().currentTime : this.player_.currentTime();
+  // Changing to event based. Not sure if we'll keep smooth scrubbing.
+  var time = (this.player_.scrubbing) ? this.player_.currentTime() : this.player_.currentTime();
   this.content.innerHTML = vjs.formatTime(time, this.player_.duration());
 };
 

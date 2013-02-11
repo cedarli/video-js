@@ -41,12 +41,24 @@ vjs.Html5 = function(player, options, ready){
 
   this.on('click', this.onClick);
 
-  this.setupTriggers();
+  player.on('doplay', this.doPlay, this);
+  player.on('dopause', this.doPause, this);
+  player.on('dovolume', function(){ this.el_.volume = this.player_.volume(); }, this);
 
-  player.on('dovolume', function(){
-    console.log('dovolume', this.player_.volume());
-    this.el_.volume = this.player_.volume();
+  player.on('docurrenttime', function(){
+    try {
+      this.el_.currentTime = this.player_.currentTime();
+    } catch(e) {
+      vjs.log(e, 'Video is not ready. (Video.js)');
+      // this.warning(VideoJS.warnings.videoNotReady);
+    }
+  }, this);
+
+  this.on('timeupdate', function(){
+    this.player_.updateTime(this.el_.currentTime);
   });
+
+  this.setupTriggers();
 
   this.triggerReady();
 };
@@ -109,13 +121,14 @@ vjs.Html5.prototype.eventHandler = function(e){
 
   this.trigger(e);
 
-  // No need for media events to bubble up.
+  // No need for media events to bubble up above the player.
   e.stopPropagation();
 };
 
 
-vjs.Html5.prototype.play = function(){ this.el_.play(); };
-vjs.Html5.prototype.pause = function(){ this.el_.pause(); };
+vjs.Html5.prototype.doPlay = function(){ this.el_.play(); };
+vjs.Html5.prototype.doPause = function(){ this.el_.pause(); };
+
 vjs.Html5.prototype.paused = function(){ return this.el_.paused; };
 
 vjs.Html5.prototype.currentTime = function(){ return this.el_.currentTime; };

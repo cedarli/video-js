@@ -480,14 +480,17 @@ vjs.Player.prototype.paused = function(){
   return (this.techGet('paused') === false) ? false : true;
 };
 
+vjs.Player.prototype.currentTime_;
+
 // http://dev.w3.org/html5/spec/video.html#dom-media-currenttime
 vjs.Player.prototype.currentTime = function(seconds){
   if (seconds !== undefined) {
 
     // Cache the last set value for smoother scrubbing.
-    this.cache_.lastSetCurrentTime = seconds;
+    this.currentTime_ = seconds;
 
-    this.techCall('setCurrentTime', seconds);
+    // this.techCall('setCurrentTime', seconds);
+    this.trigger('docurrenttime');
 
     // Improve the accuracy of manual timeupdates
     if (this.manualTimeUpdates) { this.trigger('timeupdate'); }
@@ -497,7 +500,17 @@ vjs.Player.prototype.currentTime = function(seconds){
 
   // Cache last currentTime and return
   // Default to 0 seconds
-  return this.cache_.currentTime = (this.techGet('currentTime') || 0);
+  return this.currentTime_ || 0;
+};
+
+/**
+ * Update the cached time without triggering docurrenttime
+ * @param  {Number} seconds
+ */
+vjs.Player.prototype.updateTime = function(seconds){
+  this.currentTime_ = seconds || 0;
+  this.trigger('timeupdate');
+  return this;
 };
 
 // http://dev.w3.org/html5/spec/video.html#dom-media-duration
@@ -794,7 +807,8 @@ vjs.Player.prototype.src = function(source){
 // Begin loading the src data
 // http://dev.w3.org/html5/spec/video.html#dom-media-load
 vjs.Player.prototype.load = function(){
-  this.techCall('load');
+  // this.techCall('load');
+  this.trigger('doload');
   return this;
 };
 
