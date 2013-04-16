@@ -155,7 +155,6 @@ vjs.cleanUpEvents = function(elem, type) {
  * @return {Object}
  */
 vjs.fixEvent = function(event) {
-
   function returnTrue() { return true; }
   function returnFalse() { return false; }
 
@@ -167,8 +166,12 @@ vjs.fixEvent = function(event) {
   if (!event || !event.isPropagationStopped) {
     var old = event || window.event;
 
+    console.log('CHECK', hasOwnProperty.call(old, 'type'), old.type)
+
     // Clone the old object so that we can modify the values event = {};
     event = vjs.obj.copy(old);
+    event.type = old.type;
+
 
     // The event occurred on this element
     if (!event.target) {
