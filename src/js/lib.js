@@ -87,14 +87,10 @@ vjs.obj.each = function(obj, fn, context){
 vjs.obj.merge = function(obj1, obj2){
   if (!obj2) { return obj1; }
   for (var key in obj2){
-    if (key === 'type') {
-      console.log('type', obj1[key], obj2[key], obj2.hasOwnProperty(key))
-    }
     if (hasOwnProp.call(obj2, key)) {
       obj1[key] = obj2[key];
     }
   }
-    console.log('type!!!!!!!', obj1.type)
   return obj1;
 };
 

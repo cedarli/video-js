@@ -102,10 +102,6 @@ vjs.PlayToggle = vjs.Button.extend({
 
     player.on('play', vjs.bind(this, this.onPlay));
     player.on('pause', vjs.bind(this, this.onPause));
-
-    this.el_.addEventListener('click', function(){
-      console.log('here2')
-    });
   }
 });
 
@@ -117,7 +113,6 @@ vjs.PlayToggle.prototype.buildCSSClass = function(){
 
   // OnClick - Toggle between play and pause
 vjs.PlayToggle.prototype.onClick = function(){
-  console.log('playToggle onClick')
   if (this.player_.paused()) {
     this.player_.play();
   } else {
