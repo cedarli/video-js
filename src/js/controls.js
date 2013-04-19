@@ -66,8 +66,9 @@ vjs.ControlBar.prototype.options_ = {
     'remainingTimeDisplay': {},
     'progressControl': {},
     'fullscreenToggle': {},
-    'volumeControl': {},
-    'muteToggle': {}
+    'volumeMenuButton': {}
+    // 'volumeControl': {},
+    // 'muteToggle': {}
   }
 };
 
@@ -466,19 +467,10 @@ vjs.PlayProgressBar.prototype.createEl = function(){
  * @param {Object=} options
  * @constructor
  */
-vjs.SeekHandle = vjs.Component.extend({
-  /** @constructor */
-  init: function(player, options){
-    vjs.Component.call(this, player, options);
-  }
+vjs.SeekHandle = vjs.SliderHandle.extend({
+  domClassName_:'vjs-seek-handle ' + vjs.SliderHandle.prototype.domClassName_,
+  defaultValue: '00:00'
 });
-
-vjs.SeekHandle.prototype.createEl = function(){
-  return vjs.Component.prototype.createEl.call(this, 'div', {
-    className: 'vjs-seek-handle',
-    innerHTML: '<span class="vjs-control-text">00:00</span>'
-  });
-};
 
 /**
  * Control the volume
@@ -599,21 +591,10 @@ vjs.VolumeLevel.prototype.createEl = function(){
  * @param {Object=} options
  * @constructor
  */
-vjs.VolumeHandle = vjs.Component.extend({
-  /** @constructor */
-  init: function(player, options){
-    vjs.Component.call(this, player, options);
-  }
+vjs.VolumeHandle = vjs.SliderHandle.extend({
+  domClassName_: 'vjs-volume-handle ' + vjs.SliderHandle.prototype.domClassName_,
+  defaultValue: ''
 });
-
-vjs.VolumeHandle.prototype.createEl = function(){
-  return vjs.Component.prototype.createEl.call(this, 'div', {
-    className: 'vjs-volume-handle',
-    innerHTML: '<span class="vjs-control-text"></span>'
-    // tabindex: 0,
-    // role: 'slider', 'aria-valuenow': 0, 'aria-valuemin': 0, 'aria-valuemax': 100
-  });
-};
 
 /**
  * Mute the audio
@@ -625,22 +606,27 @@ vjs.MuteToggle = vjs.Button.extend({
   /** @constructor */
   init: function(player, options){
     vjs.Button.call(this, player, options);
-
-    player.on('volumechange', vjs.bind(this, this.update));
-
-    // hide mute toggle if the current tech doesn't support volume control
-    if (player.tech && player.tech.features && player.tech.features.volumeControl === false) {
-      this.addClass('vjs-hidden');
-    }
-    player.on('loadstart', vjs.bind(this, function(){
-      if (player.tech.features && player.tech.features.volumeControl === false) {
-        this.addClass('vjs-hidden');
-      } else {
-        this.removeClass('vjs-hidden');
-      }
-    }));
+    this.setupListeners();
   }
 });
+
+vjs.MuteToggle.prototype.setupListeners = function(){
+  var player = this.player_;
+
+  player.on('volumechange', vjs.bind(this, this.update));
+
+  // hide mute toggle if the current tech doesn't support volume control
+  if (player.tech && player.tech.features && player.tech.features.volumeControl === false) {
+    this.addClass('vjs-hidden');
+  }
+  player.on('loadstart', vjs.bind(this, function(){
+    if (player.tech.features && player.tech.features.volumeControl === false) {
+      this.addClass('vjs-hidden');
+    } else {
+      this.removeClass('vjs-hidden');
+    }
+  }));
+};
 
 vjs.MuteToggle.prototype.createEl = function(){
   return vjs.Button.prototype.createEl.call(this, 'div', {
@@ -655,14 +641,12 @@ vjs.MuteToggle.prototype.onClick = function(){
 
 vjs.MuteToggle.prototype.update = function(){
   var vol = this.player_.volume(),
-      level = 3;
+      level = 2;
 
-  if (vol === 0 || this.player_.muted()) {
+  if (vol <= 0.25 || this.player_.muted()) {
     level = 0;
-  } else if (vol < 0.33) {
+  } else if (vol < 0.75) {
     level = 1;
-  } else if (vol < 0.67) {
-    level = 2;
   }
 
   // Don't rewrite the button text if the actual text doesn't change.
@@ -684,3 +668,37 @@ vjs.MuteToggle.prototype.update = function(){
   }
   vjs.addClass(this.el_, 'vjs-vol-'+level);
 };
+
+vjs.VolumeMenuButton = vjs.MenuButton.extend({
+  init: function(player, options){
+    vjs.MenuButton.call(this, player, options);
+    vjs.MuteToggle.prototype.setupListeners.call(this);
+    this.addClass('vjs-menu-button');
+  }
+});
+
+vjs.VolumeMenuButton.prototype.createMenu = function(){
+  var menu = new vjs.Menu(this.player_, {
+    contentElType: 'div'
+  });
+  var vc = new vjs.VolumeBar(this.player_);
+  menu.addChild(vc);
+  return menu;
+};
+
+// vjs.VolumeMenuButton.prototype.createItems = function(){
+//   var items = [], track;
+
+//   // Add an OFF menu item to turn all tracks off
+//   items.push(new vjs.VolumeControl(this.player_, { 'kind': this.kind_ }));
+
+//   return items;
+// };
+
+vjs.VolumeMenuButton.prototype.onClick = function(){
+  vjs.MuteToggle.prototype.onClick.call(this);
+  vjs.MenuButton.prototype.onClick.call(this);
+};
+
+vjs.VolumeMenuButton.prototype.createEl = vjs.MuteToggle.prototype.createEl;
+vjs.VolumeMenuButton.prototype.update = vjs.MuteToggle.prototype.update;

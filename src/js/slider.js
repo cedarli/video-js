@@ -34,6 +34,7 @@ vjs.Slider = vjs.Component.extend({
 });
 
 vjs.Slider.prototype.createEl = function(type, props) {
+  props.className = props.className + ' vjs-slider';
   props = vjs.obj.merge({
     role: 'slider',
     'aria-valuenow': 0,
@@ -162,3 +163,21 @@ vjs.Slider.prototype.onKeyPress = function(event){
 vjs.Slider.prototype.onBlur = function(){
   vjs.off(document, 'keyup', vjs.bind(this, this.onKeyPress));
 };
+
+/**
+ * SeekBar Behavior includes play progress bar, and seek handle
+ * Needed so it can determine seek position based on handle position/size
+ * @param {vjs.Player|Object} player
+ * @param {Object=} options
+ * @constructor
+ */
+vjs.SliderHandle = vjs.Component.extend();
+vjs.SliderHandle.prototype.defaultValue = 0;
+vjs.SliderHandle.prototype.domClassName_ = 'vjs-slider-handle';
+vjs.SliderHandle.prototype.createEl = function(){
+  return vjs.Component.prototype.createEl.call(this, 'div', {
+    className: this.domClassName_,
+    innerHTML: '<span class="vjs-control-text">'+this.defaultValue+'</span>'
+  });
+};
+

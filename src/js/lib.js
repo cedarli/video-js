@@ -51,7 +51,7 @@ vjs.obj = {};
  * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create
  * @param  {Object}   obj Object to use as prototype
  */
- vjs.obj.create = Object.create || function(obj){
+vjs.obj.create = Object.create || function(obj){
   //Create a new function called 'F' which is just an empty object.
   function F() {}
 

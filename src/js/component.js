@@ -292,7 +292,8 @@ vjs.Component.prototype.addChild = function(child, options){
   // Add the UI object's element to the container div (box)
   // Having an element is not required
   if (typeof component['el'] === 'function' && component['el']()) {
-    this.el_.appendChild(component['el']());
+    var thisEl = this.contentEl_ || this.el_;
+    thisEl.appendChild(component['el']());
   }
 
   // Return so it can stored on parent object if desired.
@@ -357,9 +358,9 @@ vjs.Component.prototype.initChildren = function(){
 };
 
 vjs.Component.prototype.buildCSSClass = function(){
-    // Child classes can include a function that does:
-    // return 'CLASS NAME' + this._super();
-    return '';
+  // Child classes can include a function that does:
+  // return 'CLASS NAME' + this._super();
+  return '';
 };
 
 /* Events

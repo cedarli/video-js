@@ -14,13 +14,15 @@ vjs.Html5 = vjs.MediaTechController.extend({
   init: function(player, options, ready){
     vjs.MediaTechController.call(this, player, options, ready);
 
-  // volume cannot be changed from 1 on iOS
-  this.features.volumeControl = vjs.Html5.canControlVolume();
+    // volume cannot be changed from 1 on iOS
+    this.features.volumeControl = vjs.Html5.canControlVolume();
 
-  // In iOS, if you move a video element in the DOM, it breaks video playback.
-  this.features.movingMediaElementInDOM = !vjs.IS_IOS;
+    // In iOS, if you move a video element in the DOM, it breaks video playback.
+    this.features.movingMediaElementInDOM = !vjs.IS_IOS;
 
-  var source = options['source'];
+    this.features.fullscreenResize = true;
+
+    var source = options['source'];
 
     // If the element source is already set, we may have missed the loadstart event, and want to trigger it.
     // We don't want to set the source again and interrupt playback.
