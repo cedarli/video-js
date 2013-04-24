@@ -51,25 +51,6 @@ module.exports = function(grunt) {
     watch: {
       files: ['src/**/*.js', 'src/css/**', 'test/unit/*.js', 'Gruntfile.js'],
       tasks: 'dev'
-    },
-    less: {
-      dev: {
-        options: {
-
-        },
-        files: {
-          'src/css/video-js.less.css': 'src/css/video-js.less'
-        }
-      },
-      production: {
-        options: {
-          paths: ['src/css'],
-          yuicompress: true
-        },
-        files: {
-          'video-js.min.css': 'video-js.less'
-        }
-      }
     }
   });
 
@@ -78,13 +59,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('contribflow');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'build', 'minify', 'dist']);
   // Development watch task
-  grunt.registerTask('dev', ['less:dev', 'jshint', 'build', 'qunit:source']);
+  grunt.registerTask('dev', ['jshint', 'build', 'qunit:source']);
   grunt.registerTask('test', ['jshint', 'build', 'minify', 'qunit']);
 
   var fs = require('fs'),

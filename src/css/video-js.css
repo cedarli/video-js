@@ -110,11 +110,11 @@ body.vjs-full-window {
   visibility: visible; /* Needed to make sure things hide in older browsers too. */
   opacity: 1;
 
-  -webkit-transition: visibility 0.3s, opacity 0.3s;
-     -moz-transition: visibility 0.3s, opacity 0.3s;
-      -ms-transition: visibility 0.3s, opacity 0.3s;
-       -o-transition: visibility 0.3s, opacity 0.3s;
-          transition: visibility 0.3s, opacity 0.3s;
+  -webkit-transition: visibility 0.1s, opacity 0.1s;
+     -moz-transition: visibility 0.1s, opacity 0.1s;
+      -ms-transition: visibility 0.1s, opacity 0.1s;
+       -o-transition: visibility 0.1s, opacity 0.1s;
+          transition: visibility 0.1s, opacity 0.1s;
 }
 .vjs-fade-out {
   display: block !important;
@@ -126,6 +126,13 @@ body.vjs-full-window {
       -ms-transition: visibility 1.5s, opacity 1.5s;
        -o-transition: visibility 1.5s, opacity 1.5s;
           transition: visibility 1.5s, opacity 1.5s;
+
+  /* Wait a moment before fading out the control bar */
+  -webkit-transition-delay: 2s;
+     -moz-transition-delay: 2s;
+      -ms-transition-delay: 2s;
+       -o-transition-delay: 2s;
+          transition-delay: 2s;
 }
 /* Hide disabled or unsupported controls */
 .vjs-default-skin .vjs-hidden { display: none; }
@@ -307,7 +314,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 .vjs-default-skin .vjs-mute-control .vjs-menu-content {
   height: 2.5em;
 }
-.vjs-default-skin .vjs-menu-button .vjs-volume-bar {
+.vjs-default-skin .vjs-menu-button .vjs-volume-slider {
   outline: 0; /* Replace browser focus hightlight with handle highlight */
   width: 5em;
   height: 0.3em;
@@ -365,6 +372,7 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
      -moz-transition: top 0.4s, height 0.4s, font-size 0.4s,    -moz-transform 0.4s;
        -o-transition: top 0.4s, height 0.4s, font-size 0.4s,      -o-transform 0.4s;
           transition: top 0.4s, height 0.4s, font-size 0.4s,         transform 0.4s;
+
 }
 
 /* On hover, make the progress bar grow to something that's more clickable.
@@ -544,6 +552,8 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 
   margin-left: -0.5em;
   margin-top: -0.5em;
+
+  opacity: 0.75;
 
   -webkit-animation: spin 1.5s infinite linear;
      -moz-animation: spin 1.5s infinite linear;

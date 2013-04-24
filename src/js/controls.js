@@ -663,7 +663,7 @@ vjs.MuteToggle.prototype.update = function(){
   }
 
   /* TODO improve muted icon classes */
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < 3; i++) {
     vjs.removeClass(this.el_, 'vjs-vol-'+i);
   }
   vjs.addClass(this.el_, 'vjs-vol-'+level);
