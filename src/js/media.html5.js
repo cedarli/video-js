@@ -12,15 +12,13 @@
 vjs.Html5 = vjs.MediaTechController.extend({
   /** @constructor */
   init: function(player, options, ready){
-    vjs.MediaTechController.call(this, player, options, ready);
-
     // volume cannot be changed from 1 on iOS
     this.features.volumeControl = vjs.Html5.canControlVolume();
 
     // In iOS, if you move a video element in the DOM, it breaks video playback.
     this.features.movingMediaElementInDOM = !vjs.IS_IOS;
 
-    this.features.fullscreenResize = true;
+    vjs.MediaTechController.call(this, player, options, ready);
 
     var source = options['source'];
 
