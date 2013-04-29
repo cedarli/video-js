@@ -3,6 +3,15 @@ VideoJS Default Styles (http://videojs.com)
 Version GENERATED_AT_BUILD
 */
 
+@font-face{
+  font-family:'FontAwesome';
+  src:url('http://netdna.bootstrapcdn.com/font-awesome/3.0.2/font/fontawesome-webfont.eot?v=3.0.2');
+  src:url('http://netdna.bootstrapcdn.com/font-awesome/3.0.2/font/fontawesome-webfont.eot?#iefix&v=3.0.2') format('embedded-opentype'),
+  url('http://netdna.bootstrapcdn.com/font-awesome/3.0.2/font/fontawesome-webfont.woff?v=3.0.2') format('woff'),
+  url('http://netdna.bootstrapcdn.com/font-awesome/3.0.2/font/fontawesome-webfont.ttf?v=3.0.2') format('truetype');
+  font-weight:normal;
+  font-style:normal }
+
 /*
 REQUIRED STYLES (be careful overriding)
 ================================================================================ */
@@ -284,20 +293,25 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
 
 /* Volume/Mute
 -------------------------------------------------------------------------------- */
-.vjs-default-skin .vjs-mute-control {
+.vjs-default-skin .vjs-mute-control,
+.vjs-default-skin .vjs-volume-menu-button {
   cursor: pointer;
   float: right;
 }
-.vjs-default-skin .vjs-mute-control:before {
+.vjs-default-skin .vjs-mute-control:before,
+.vjs-default-skin .vjs-volume-menu-button:before {
   content: "\f028"; /* Full volume */
 }
-.vjs-default-skin .vjs-mute-control.vjs-vol-0:before {
+.vjs-default-skin .vjs-mute-control.vjs-vol-0:before,
+.vjs-default-skin .vjs-volume-menu-button.vjs-vol-0:before {
   content: "\f026"; /* No volume */
 }
-.vjs-default-skin .vjs-mute-control.vjs-vol-1:before {
+.vjs-default-skin .vjs-mute-control.vjs-vol-1:before,
+.vjs-default-skin .vjs-volume-menu-button.vjs-vol-1:before {
   content: "\f027"; /* Half volume */
 }
-.vjs-default-skin .vjs-mute-control.vjs-vol-2:before {
+.vjs-default-skin .vjs-mute-control.vjs-vol-2:before,
+.vjs-default-skin .vjs-volume-menu-button.vjs-vol-2:before {
   content: "\f028"; /* Full volume */
 }
 
@@ -311,15 +325,8 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
   margin: 1em auto 0;
 }
 
-.vjs-default-skin .vjs-mute-control .vjs-menu-content {
+.vjs-default-skin .vjs-volume-menu-button .vjs-menu-content {
   height: 2.5em;
-}
-.vjs-default-skin .vjs-menu-button .vjs-volume-slider {
-  outline: 0; /* Replace browser focus hightlight with handle highlight */
-  width: 5em;
-  height: 0.3em;
-  cursor: pointer !important;
-  background: #666;
 }
 
 .vjs-default-skin .vjs-volume-level {
@@ -332,28 +339,31 @@ so you can upgrade to newer versions easier. You can remove all these styles by 
     url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAP0lEQVQIHWWMAQoAIAgDR/QJ/Ub//04+w7ZICBwcOg5FZi5iBB82AGzixEglJrd4TVK5XUJpskSTEvpdFzX9AB2pGziSQcvAAAAAAElFTkSuQmCC)
     -50% 0 repeat;
 }
-.vjs-default-skin .vjs-volume-handle {
-  top: -0.2em;
-  width: 0.6em;
-  height: 0.6em;
+.vjs-default-skin .vjs-volume-bar .vjs-volume-handle {
+  width: 0.5em;
+  height: 0.5em;
 }
 
 .vjs-default-skin .vjs-volume-handle:before {
-  font-size: 0.6em;
+  font-size: 0.5em;
+  top: -0.2em;
+  right: 0;
+  width: 1em;
+  height: 1em;
 }
 
-.vjs-default-skin .vjs-mute-control.vjs-menu-button .vjs-menu {
-  left: em;
-}
+/*.vjs-default-skin .vjs-volume-menu-button .vjs-menu {
+  left: 0em;
+}*/
 
-.vjs-default-skin .vjs-mute-control.vjs-menu-button .vjs-menu .vjs-menu-content {
+.vjs-default-skin .vjs-volume-menu-button .vjs-menu .vjs-menu-content {
   width: 8em;
   left: -4em;
 }
 
-.vjs-default-skin .vjs-menu-button .vjs-volume-control {
+/*.vjs-default-skin .vjs-menu-button .vjs-volume-control {
   height: 1.5em;
-}
+}*/
 
 /* Progress
 -------------------------------------------------------------------------------- */
