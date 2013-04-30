@@ -554,7 +554,7 @@ vjs.VolumeBar.prototype.onMouseMove = function(event) {
 };
 
 vjs.VolumeBar.prototype.getPercent = function(){
-   return this.player_.volume();
+  return this.player_.volume();
 };
 
 vjs.VolumeBar.prototype.stepForward = function(){
@@ -635,8 +635,8 @@ vjs.MuteToggle.prototype.createEl = function(){
   });
 };
 
-vjs.MuteToggle.prototype.onClick = function(){
-  this.player_.muted( this.player_.muted() ? false : true );
+vjs.MuteToggle.prototype.onClick = function(event){
+  this.player_.muted(this.player_.muted() ? false : true);
 };
 
 vjs.MuteToggle.prototype.update = function(){

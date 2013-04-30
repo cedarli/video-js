@@ -82,10 +82,10 @@ vjs.options = {
   // Included control sets
   'children': {
     'mediaLoader': {},
-    'posterImage': {},
-    'textTrackDisplay': {},
-    'loadingSpinner': {},
-    'bigPlayButton': {},
+    // 'posterImage': {},
+    // 'textTrackDisplay': {},
+    // 'loadingSpinner': {},
+    // 'bigPlayButton': {},
     'controlBar': {}
   }
 };

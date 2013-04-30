@@ -770,7 +770,7 @@ vjs.OffTextTrackMenuItem = vjs.TextTrackMenuItem.extend({
 });
 
 vjs.OffTextTrackMenuItem.prototype.onClick = function(){
-  vjs.TextTrackMenuItem.prototype.onClick(this);
+  vjs.TextTrackMenuItem.prototype.onClick.call(this);
   this.player_.showTextTrack(this.track.id_, this.track.kind());
 };
 
@@ -853,62 +853,6 @@ vjs.TextTrackButton.prototype.createItems = function(){
   return items;
 };
 
-// vjs.TextTrackButton.prototype.buildCSSClass = function(){
-//   return this.className + ' vjs-menu-button ' + vjs.Button.prototype.buildCSSClass.call(this);
-// };
-
-// Focus - Add keyboard functionality to element
-// vjs.TextTrackButton.prototype.onFocus = function(){};
-// Can't turn off list display that we turned on with focus, because list would go away.
-// vjs.TextTrackButton.prototype.onBlur = function(){};
-
-// vjs.TextTrackButton.prototype.onClick = function(){
-//   // When you click the button it adds focus, which will show the menu indefinitely.
-//   // So we'll remove focus when the mouse leaves the button.
-//   // Focus is needed for tab navigation.
-//   this.one('mouseout', vjs.bind(this, function(){
-//     this.menu.unlockShowing();
-//     this.el_.blur();
-//   }));
-//   if (this.buttonPressed){
-//       this.unpressButton();
-//   } else {
-//       this.pressButton();
-//   }
-// };
-
-// vjs.TextTrackButton.prototype.onKeyPress = function(event){
-//   // Check for space bar (32) or enter (13) keys
-//   if (event.which == 32 || event.which == 13) {
-//       event.preventDefault();
-//       if (this.buttonPressed){
-//           this.unpressButton();
-//       } else {
-//           this.pressButton();
-//       }
-//   }
-
-//   // Check for escape (27) key
-//   if (event.which == 27){
-//       event.preventDefault();
-//       if (this.buttonPressed){
-//           this.unpressButton();
-//       }
-//   }
-// };
-
-// vjs.TextTrackButton.prototype.pressButton = function(){
-//     this.buttonPressed = true;
-//     this.menu.lockShowing();
-//     this.el_.setAttribute('aria-pressed',true);
-//     this.el_.children[1].children[0].focus(); // set the focus to the title of the submenu
-// };
-
-// vjs.TextTrackButton.prototype.unpressButton = function(){
-//     this.buttonPressed = false;
-//     this.menu.unlockShowing();
-//     this.el_.setAttribute('aria-pressed',false);
-// };
 /**
  * @constructor
  */

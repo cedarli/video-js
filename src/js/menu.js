@@ -25,6 +25,14 @@ vjs.Menu.prototype.createEl = function(){
     className: 'vjs-menu'
   });
   el.appendChild(this.contentEl_);
+
+  // Prevent clicks from bubbling up. Needed for Menu Buttons,
+  // where a click on the parent is significant
+  vjs.on(el, 'click', function(event){
+    event.preventDefault();
+    event.stopImmediatePropagation();
+  });
+
   return el;
 };
 

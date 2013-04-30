@@ -21,6 +21,7 @@ vjs.Slider = vjs.Component.extend({
     this.on('touchstart', this.onMouseDown);
     this.on('focus', this.onFocus);
     this.on('blur', this.onBlur);
+    this.on('click', this.onClick);
 
     this.player_.on('controlsvisible', vjs.bind(this, this.update));
 
@@ -48,6 +49,7 @@ vjs.Slider.prototype.createEl = function(type, props) {
 
 vjs.Slider.prototype.onMouseDown = function(event){
   event.preventDefault();
+  event.stopImmediatePropagation();
   vjs.blockTextSelection();
 
   this.boundEvents.move = vjs.bind(this, this.onMouseMove);
@@ -160,6 +162,11 @@ vjs.Slider.prototype.onKeyPress = function(event){
 
 vjs.Slider.prototype.onBlur = function(){
   vjs.off(document, 'keyup', vjs.bind(this, this.onKeyPress));
+};
+
+vjs.Slider.prototype.onClick = function(event){
+  event.stopImmediatePropagation();
+  event.preventDefault();
 };
 
 /**
