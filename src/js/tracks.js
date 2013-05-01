@@ -961,9 +961,6 @@ vjs.ChaptersButton.prototype.createMenu = function(){
     }
   }
 
-  // Add list to element
-  this.addChild(menu);
-
   if (this.items.length > 0) {
     this.show();
   }
