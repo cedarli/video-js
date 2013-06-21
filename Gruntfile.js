@@ -111,6 +111,15 @@ module.exports = function(grunt) {
         dest: 'build/files/',
         ext: '.min.css'
       }
+    },
+    karma: {
+      options: {
+        configFile: 'karma.conf.js'
+      },
+      dev: {
+        configFile: 'karma.conf.js',
+        autoWatch: true
+      }
     }
   });
 
@@ -122,6 +131,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-s3');
   grunt.loadNpmTasks('contribflow');
+  grunt.loadNpmTasks('grunt-karma');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'build', 'minify', 'dist']);

@@ -1,0 +1,3066 @@
+<!doctype html>
+<html>
+<head>
+    <title>Code coverage report for js/player.js</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="en-gb">
+    
+        <link rel='stylesheet' href='../prettify.css'>
+    
+    <style type='text/css'>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: "Helvetic Neue", Helvetica,Arial;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 10em;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: consolas, menlo, monaco, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 14px;
+            font-size: 14px;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+            xtext-decoration: line-through;
+        }
+        .missing-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { text-decoration: none; color: #000; }
+        div.coverage-summary a:visited { text-decoration: none; color: #333; }
+        div.coverage-summary a:hover { text-decoration: underline; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: url("http://yui.yahooapis.com/3.6.0/build/datatable-sort/assets/skins/sam/sort-arrow-sprite.png") no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+    </style>
+</head>
+<body>
+<div class='header low'>
+    <h1>Code coverage report for <span class='entity'>js/player.js</span></h1>
+    <h2>
+        
+        Statements: <span class='metric'>42.93% <small>(161 / 375)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class='metric'>23.03% <small>(38 / 165)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class='metric'>30.16% <small>(19 / 63)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class='metric'>42.98% <small>(156 / 363)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">js/</a> &#187; player.js</div>
+</div>
+<div class='body'>
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-yes">21</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Main player class. A player instance is returned by _V_(id);
+ * @param {Element} tag        The original video tag used for configuring options
+ * @param {Object=} options    Player options
+ * @param {Function=} ready    Ready callback function
+ * @constructor
+ */
+vjs.Player = vjs.Component.extend({
+  /** @constructor */
+  init: function(tag, options, ready){
+    this.tag = tag; // Store the original tag used to set options
+&nbsp;
+    // Set Options
+    // The options argument overrides options set in the video tag
+    // which overrides globally set options.
+    // This latter part coincides with the load order
+    // (tag must exist before Player)
+    options = vjs.obj.merge(this.getTagSettings(tag), options);
+&nbsp;
+    // Cache for video property values.
+    this.cache_ = {};
+&nbsp;
+    // Set poster
+    this.poster_ = options['poster'];
+    // Set controls
+    this.controls_ = options['controls'];
+    // Use native controls for iOS and Android by default
+    //  until controls are more stable on those devices.
+    <span class="missing-if-branch" title="if path not taken"" >I</span>if (options['customControlsOnMobile'] !== true &amp;&amp; (vjs.IS_IOS || vjs.IS_ANDROID)) {
+<span class="cstat-no" title="statement not covered" >      tag.controls = options['controls'];</span>
+<span class="cstat-no" title="statement not covered" >      this.controls_ = false;</span>
+    } else {
+      // Original tag settings stored in options
+      // now remove immediately so native controls don't flash.
+      tag.controls = false;
+    }
+&nbsp;
+    // Run base component initializing with new options.
+    // Builds the element through createEl()
+    // Inits and embeds any child components in opts
+    vjs.Component.call(this, this, options, ready);
+&nbsp;
+    // Firstplay event implimentation. Not sold on the event yet.
+    // Could probably just check currentTime==0?
+    this.one('play', <span class="fstat-no" title="function not covered" >function(e){</span>
+<span class="cstat-no" title="statement not covered" >      var fpEvent = { type: 'firstplay', target: this.el_ };</span>
+      // Using vjs.trigger so we can check if default was prevented
+<span class="cstat-no" title="statement not covered" >      var keepGoing = vjs.trigger(this.el_, fpEvent);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!keepGoing) {</span>
+<span class="cstat-no" title="statement not covered" >        e.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >        e.stopPropagation();</span>
+<span class="cstat-no" title="statement not covered" >        e.stopImmediatePropagation();</span>
+      }
+    });
+&nbsp;
+    this.on('ended', this.onEnded);
+    this.on('play', this.onPlay);
+    this.on('firstplay', this.onFirstPlay);
+    this.on('pause', this.onPause);
+    this.on('progress', this.onProgress);
+    this.on('durationchange', this.onDurationChange);
+    this.on('error', this.onError);
+    this.on('fullscreenchange', this.onFullscreenChange);
+&nbsp;
+    // Make player easily findable by ID
+    vjs.players[this.id_] = this;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken"" >I</span>if (options['plugins']) {
+<span class="cstat-no" title="statement not covered" >      vjs.obj.each(options['plugins'], <span class="fstat-no" title="function not covered" >function(key, val){</span></span>
+<span class="cstat-no" title="statement not covered" >        this[key](val);</span>
+      }, this);
+    }
+  }
+});
+&nbsp;
+/**
+ * Player instance options, surfaced using vjs.options
+ * vjs.options = vjs.Player.prototype.options_
+ * Make changes in vjs.options, not here.
+ * All options should use string keys so they avoid
+ * renaming by closure compiler
+ * @type {Object}
+ * @private
+ */
+vjs.Player.prototype.options_ = vjs.options;
+&nbsp;
+vjs.Player.prototype.dispose = function(){
+  // this.isReady_ = false;
+&nbsp;
+  // Kill reference to this player
+  vjs.players[this.id_] = null;
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (this.tag &amp;&amp; this.tag['player']) { this.tag['player'] = null; }
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (this.el_ &amp;&amp; this.el_['player']) { this.el_['player'] = null; }
+&nbsp;
+  // Ensure that tracking progress and time progress will stop and plater deleted
+  this.stopTrackingProgress();
+  this.stopTrackingCurrentTime();
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (this.tech) { this.tech.dispose(); }
+&nbsp;
+  // Component dispose
+  vjs.Component.prototype.dispose.call(this);
+};
+&nbsp;
+vjs.Player.prototype.getTagSettings = function(tag){
+  var options = {
+    'sources': [],
+    'tracks': []
+  };
+&nbsp;
+  vjs.obj.merge(options, vjs.getAttributeValues(tag));
+&nbsp;
+  // Get tag children settings
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (tag.hasChildNodes()) {
+<span class="cstat-no" title="statement not covered" >    var child, childName,</span>
+        children = tag.childNodes,
+        i = 0,
+        j = children.length;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    for (; i &lt; j; i++) {</span>
+<span class="cstat-no" title="statement not covered" >      child = children[i];</span>
+      // Change case needed: http://ejohn.org/blog/nodename-case-sensitivity/
+<span class="cstat-no" title="statement not covered" >      childName = child.nodeName.toLowerCase();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (childName === 'source') {</span>
+<span class="cstat-no" title="statement not covered" >        options['sources'].push(vjs.getAttributeValues(child));</span>
+&nbsp;
+      } else <span class="cstat-no" title="statement not covered" >if (childName === 'track') {</span>
+<span class="cstat-no" title="statement not covered" >        options['tracks'].push(vjs.getAttributeValues(child));</span>
+&nbsp;
+      }
+    }
+  }
+&nbsp;
+  return options;
+};
+&nbsp;
+vjs.Player.prototype.createEl = function(){
+  var el = this.el_ = vjs.Component.prototype.createEl.call(this, 'div');
+  var tag = this.tag;
+&nbsp;
+  // Remove width/height attrs from tag so CSS can make it 100% width/height
+  tag.removeAttribute('width');
+  tag.removeAttribute('height');
+  // Empty video tag sources and tracks so the built-in player doesn't use them also.
+  // This may not be fast enough to stop HTML5 browsers from reading the tags
+  // so we'll need to turn off any default tracks if we're manually doing
+  // captions and subtitles. videoElement.textTracks
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (tag.hasChildNodes()) {
+<span class="cstat-no" title="statement not covered" >    var nrOfChildNodes = tag.childNodes.length;</span>
+<span class="cstat-no" title="statement not covered" >    for (var i=0,j=tag.childNodes;i&lt;nrOfChildNodes;i++) {</span>
+<span class="cstat-no" title="statement not covered" >      if (j[0].nodeName.toLowerCase() == 'source' || j[0].nodeName.toLowerCase() == 'track') {</span>
+<span class="cstat-no" title="statement not covered" >        tag.removeChild(j[0]);</span>
+      }
+    }
+  }
+&nbsp;
+  // Make sure tag ID exists
+  tag.id = tag.id || <span class="branch-1 cbranch-no" title="branch not covered" >'vjs_video_' + vjs.guid++;</span>
+&nbsp;
+  // Give video tag ID and class to player div
+  // ID will now reference player box, not the video tag
+  el.id = tag.id;
+  el.className = tag.className;
+&nbsp;
+  // Update tag id/class for use as HTML5 playback tech
+  // Might think we should do this after embedding in container so .vjs-tech class
+  // doesn't flash 100% width/height, but class only applies with .video-js parent
+  tag.id += '_html5_api';
+  tag.className = 'vjs-tech';
+&nbsp;
+  // Make player findable on elements
+  tag['player'] = el['player'] = this;
+  // Default state of video is paused
+  this.addClass('vjs-paused');
+&nbsp;
+  // Make box use width/height of tag, or rely on default implementation
+  // Enforce with CSS since width/height attrs don't work on divs
+  this.width(this.options_['width'], true); // (true) Skip resize listener on load
+  this.height(this.options_['height'], true);
+&nbsp;
+  // Wrap video tag in div (el/box) container
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (tag.parentNode) {
+<span class="cstat-no" title="statement not covered" >    tag.parentNode.insertBefore(el, tag);</span>
+  }
+  vjs.insertFirst(tag, el); // Breaks iPhone, fixed in HTML5 setup.
+&nbsp;
+  return el;
+};
+&nbsp;
+// /* Media Technology (tech)
+// ================================================================================ */
+// Load/Create an instance of playback technlogy including element and API methods
+// And append playback element in player div.
+vjs.Player.prototype.loadTech = function(techName, source){
+&nbsp;
+  // Pause and remove current playback technology
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (this.tech) {
+<span class="cstat-no" title="statement not covered" >    this.unloadTech();</span>
+&nbsp;
+  // If the first time loading, HTML5 tag will exist but won't be initialized
+  // So we need to remove it if we're not loading HTML5
+  } else <span class="missing-if-branch" title="if path not taken"" >I</span>if (techName !== 'Html5' &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >this.tag)</span> {
+<span class="cstat-no" title="statement not covered" >    this.el_.removeChild(this.tag);</span>
+<span class="cstat-no" title="statement not covered" >    this.tag.player = null;</span>
+<span class="cstat-no" title="statement not covered" >    this.tag = null;</span>
+  }
+&nbsp;
+  this.techName = techName;
+&nbsp;
+  // Turn off API access because we're loading a new tech that might load asynchronously
+  this.isReady_ = false;
+&nbsp;
+  var techReady = function(){
+    this.player_.triggerReady();
+&nbsp;
+    // Manually track progress in cases where the browser/flash player doesn't report it.
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (!this.features.progressEvents) {
+      this.player_.manualProgressOn();
+    }
+&nbsp;
+    // Manually track timeudpates in cases where the browser/flash player doesn't report it.
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (!this.features.timeupdateEvents) {
+      this.player_.manualTimeUpdatesOn();
+    }
+  };
+&nbsp;
+  // Grab tech-specific options from player options and add source and parent element to use.
+  var techOptions = vjs.obj.merge({ 'source': source, 'parentEl': this.el_ }, this.options_[techName.toLowerCase()]);
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (source) {
+<span class="cstat-no" title="statement not covered" >    if (source.src == this.cache_.src &amp;&amp; this.cache_.currentTime &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >      techOptions['startTime'] = this.cache_.currentTime;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.cache_.src = source.src;</span>
+  }
+&nbsp;
+  // Initialize tech instance
+  this.tech = new window['videojs'][techName](this, techOptions);
+&nbsp;
+  this.tech.ready(techReady);
+};
+&nbsp;
+vjs.Player.prototype.unloadTech = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.isReady_ = false;</span>
+<span class="cstat-no" title="statement not covered" >  this.tech.dispose();</span>
+&nbsp;
+  // Turn off any manual progress or timeupdate tracking
+<span class="cstat-no" title="statement not covered" >  if (this.manualProgress) { <span class="cstat-no" title="statement not covered" >this.manualProgressOff(); </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.manualTimeUpdates) { <span class="cstat-no" title="statement not covered" >this.manualTimeUpdatesOff(); </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.tech = false;</span>
+};
+&nbsp;
+// There's many issues around changing the size of a Flash (or other plugin) object.
+// First is a plugin reload issue in Firefox that has been around for 11 years: https://bugzilla.mozilla.org/show_bug.cgi?id=90268
+// Then with the new fullscreen API, Mozilla and webkit browsers will reload the flash object after going to fullscreen.
+// To get around this, we're unloading the tech, caching source and currentTime values, and reloading the tech once the plugin is resized.
+// reloadTech: function(betweenFn){
+//   vjs.log('unloadingTech')
+//   this.unloadTech();
+//   vjs.log('unloadedTech')
+//   if (betweenFn) { betweenFn.call(); }
+//   vjs.log('LoadingTech')
+//   this.loadTech(this.techName, { src: this.cache_.src })
+//   vjs.log('loadedTech')
+// },
+&nbsp;
+/* Fallbacks for unsupported event types
+================================================================================ */
+// Manually trigger progress events based on changes to the buffered amount
+// Many flash players and older HTML5 browsers don't send progress or progress-like events
+vjs.Player.prototype.manualProgressOn = function(){
+  this.manualProgress = true;
+&nbsp;
+  // Trigger progress watching when a source begins loading
+  this.trackProgress();
+&nbsp;
+  // Watch for a native progress event call on the tech element
+  // In HTML5, some older versions don't support the progress event
+  // So we're assuming they don't, and turning off manual progress if they do.
+  // As opposed to doing user agent detection
+  this.tech.one('progress', <span class="fstat-no" title="function not covered" >function(){</span>
+&nbsp;
+    // Update known progress support for this playback technology
+<span class="cstat-no" title="statement not covered" >    this.features.progressEvents = true;</span>
+&nbsp;
+    // Turn off manual progress tracking
+<span class="cstat-no" title="statement not covered" >    this.player_.manualProgressOff();</span>
+  });
+};
+&nbsp;
+vjs.Player.prototype.manualProgressOff = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.manualProgress = false;</span>
+<span class="cstat-no" title="statement not covered" >  this.stopTrackingProgress();</span>
+};
+&nbsp;
+vjs.Player.prototype.trackProgress = function(){
+&nbsp;
+  this.progressInterval = setInterval(vjs.bind(this, <span class="fstat-no" title="function not covered" >function(){</span>
+    // Don't trigger unless buffered amount is greater than last time
+    // log(this.cache_.bufferEnd, this.buffered().end(0), this.duration())
+    /* TODO: update for multiple buffered regions */
+<span class="cstat-no" title="statement not covered" >    if (this.cache_.bufferEnd &lt; this.buffered().end(0)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.trigger('progress');</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.bufferedPercent() == 1) {</span>
+<span class="cstat-no" title="statement not covered" >      this.stopTrackingProgress();</span>
+<span class="cstat-no" title="statement not covered" >      this.trigger('progress'); </span>// Last update
+    }
+  }), 500);
+};
+vjs.Player.prototype.stopTrackingProgress = function(){ clearInterval(this.progressInterval); };
+&nbsp;
+/* Time Tracking -------------------------------------------------------------- */
+vjs.Player.prototype.manualTimeUpdatesOn = function(){
+  this.manualTimeUpdates = true;
+&nbsp;
+  this.on('play', this.trackCurrentTime);
+  this.on('pause', this.stopTrackingCurrentTime);
+  // timeupdate is also called by .currentTime whenever current time is set
+&nbsp;
+  // Watch for native timeupdate event
+  this.tech.one('timeupdate', <span class="fstat-no" title="function not covered" >function(){</span>
+    // Update known progress support for this playback technology
+<span class="cstat-no" title="statement not covered" >    this.features.timeupdateEvents = true;</span>
+    // Turn off manual progress tracking
+<span class="cstat-no" title="statement not covered" >    this.player_.manualTimeUpdatesOff();</span>
+  });
+};
+&nbsp;
+vjs.Player.prototype.manualTimeUpdatesOff = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.manualTimeUpdates = false;</span>
+<span class="cstat-no" title="statement not covered" >  this.stopTrackingCurrentTime();</span>
+<span class="cstat-no" title="statement not covered" >  this.off('play', this.trackCurrentTime);</span>
+<span class="cstat-no" title="statement not covered" >  this.off('pause', this.stopTrackingCurrentTime);</span>
+};
+&nbsp;
+vjs.Player.prototype.trackCurrentTime = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  if (this.currentTimeInterval) { <span class="cstat-no" title="statement not covered" >this.stopTrackingCurrentTime(); </span>}</span>
+<span class="cstat-no" title="statement not covered" >  this.currentTimeInterval = setInterval(vjs.bind(this, <span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >    this.trigger('timeupdate');</span>
+  }), 250); // 42 = 24 fps // 250 is what Webkit uses // FF uses 15
+};
+&nbsp;
+// Turn off play progress tracking (when paused or dragging)
+vjs.Player.prototype.stopTrackingCurrentTime = function(){ clearInterval(this.currentTimeInterval); };
+&nbsp;
+// /* Player event handlers (how the player reacts to certain events)
+// ================================================================================ */
+vjs.Player.prototype.onEnded = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  if (this.options_['loop']) {</span>
+<span class="cstat-no" title="statement not covered" >    this.currentTime(0);</span>
+<span class="cstat-no" title="statement not covered" >    this.play();</span>
+  }
+};
+&nbsp;
+vjs.Player.prototype.onPlay = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  vjs.removeClass(this.el_, 'vjs-paused');</span>
+<span class="cstat-no" title="statement not covered" >  vjs.addClass(this.el_, 'vjs-playing');</span>
+};
+&nbsp;
+vjs.Player.prototype.onFirstPlay = <span class="fstat-no" title="function not covered" >function(){</span>
+    //If the first starttime attribute is specified
+    //then we will start at the given offset in seconds
+<span class="cstat-no" title="statement not covered" >    if(this.options_['starttime']){</span>
+<span class="cstat-no" title="statement not covered" >      this.currentTime(this.options_['starttime']);</span>
+    }
+};
+&nbsp;
+vjs.Player.prototype.onPause = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  vjs.removeClass(this.el_, 'vjs-playing');</span>
+<span class="cstat-no" title="statement not covered" >  vjs.addClass(this.el_, 'vjs-paused');</span>
+};
+&nbsp;
+vjs.Player.prototype.onProgress = <span class="fstat-no" title="function not covered" >function(){</span>
+  // Add custom event for when source is finished downloading.
+<span class="cstat-no" title="statement not covered" >  if (this.bufferedPercent() == 1) {</span>
+<span class="cstat-no" title="statement not covered" >    this.trigger('loadedalldata');</span>
+  }
+};
+&nbsp;
+// Update duration with durationchange event
+// Allows for cacheing value instead of asking player each time.
+vjs.Player.prototype.onDurationChange = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.duration(this.techGet('duration'));</span>
+};
+&nbsp;
+vjs.Player.prototype.onError = <span class="fstat-no" title="function not covered" >function(e) {</span>
+<span class="cstat-no" title="statement not covered" >  vjs.log('Video Error', e);</span>
+};
+&nbsp;
+vjs.Player.prototype.onFullscreenChange = <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >  if (this.isFullScreen) {</span>
+<span class="cstat-no" title="statement not covered" >    this.addClass('vjs-fullscreen');</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    this.removeClass('vjs-fullscreen');</span>
+  }
+};
+&nbsp;
+// /* Player API
+// ================================================================================ */
+&nbsp;
+/**
+ * Object for cached values.
+ * @private
+ */
+vjs.Player.prototype.cache_;
+&nbsp;
+vjs.Player.prototype.getCache = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  return this.cache_;</span>
+};
+&nbsp;
+// Pass values to the playback tech
+vjs.Player.prototype.techCall = <span class="fstat-no" title="function not covered" >function(method, arg){</span>
+  // If it's not ready yet, call method when it is
+<span class="cstat-no" title="statement not covered" >  if (this.tech &amp;&amp; !this.tech.isReady_) {</span>
+<span class="cstat-no" title="statement not covered" >    this.tech.ready(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >      this[method](arg);</span>
+    });
+&nbsp;
+  // Otherwise call method now
+  } else {
+<span class="cstat-no" title="statement not covered" >    try {</span>
+<span class="cstat-no" title="statement not covered" >      this.tech[method](arg);</span>
+    } catch(e) {
+<span class="cstat-no" title="statement not covered" >      vjs.log(e);</span>
+<span class="cstat-no" title="statement not covered" >      throw e;</span>
+    }
+  }
+};
+&nbsp;
+// Get calls can't wait for the tech, and sometimes don't need to.
+vjs.Player.prototype.techGet = function(method){
+&nbsp;
+  // Make sure there is a tech
+  // if (!this.tech) {
+  //   return;
+  // }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (this.tech.isReady_) {
+&nbsp;
+    // Flash likes to die and reload when you hide or reposition it.
+    // In these cases the object methods go away and we get errors.
+    // When that happens we'll catch the errors and inform tech that it's not ready any more.
+    try {
+      return this.tech[method]();
+    } catch(e) {
+      // When building additional tech libs, an expected method may not be defined yet
+<span class="cstat-no" title="statement not covered" >      if (this.tech[method] === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >        vjs.log('Video.js: ' + method + ' method not defined for '+this.techName+' playback technology.', e);</span>
+      } else {
+        // When a method isn't available on the object it throws a TypeError
+<span class="cstat-no" title="statement not covered" >        if (e.name == 'TypeError') {</span>
+<span class="cstat-no" title="statement not covered" >          vjs.log('Video.js: ' + method + ' unavailable on '+this.techName+' playback technology element.', e);</span>
+<span class="cstat-no" title="statement not covered" >          this.tech.isReady_ = false;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          vjs.log(e);</span>
+        }
+      }
+<span class="cstat-no" title="statement not covered" >      throw e;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return;</span>
+};
+&nbsp;
+/**
+ * Start media playback
+ * http://dev.w3.org/html5/spec/video.html#dom-media-play
+ * We're triggering the 'play' event here instead of relying on the
+ * media element to allow using event.preventDefault() to stop
+ * play from happening if desired. Usecase: preroll ads.
+ */
+vjs.Player.prototype.play = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.techCall('play');</span>
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-pause
+vjs.Player.prototype.pause = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.techCall('pause');</span>
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-paused
+// The initial state of paused should be true (in Safari it's actually false)
+vjs.Player.prototype.paused = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  return (this.techGet('paused') === false) ? false : true;</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-currenttime
+vjs.Player.prototype.currentTime = function(seconds){
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (seconds !== undefined) {
+&nbsp;
+    // Cache the last set value for smoother scrubbing.
+<span class="cstat-no" title="statement not covered" >    this.cache_.lastSetCurrentTime = seconds;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.techCall('setCurrentTime', seconds);</span>
+&nbsp;
+    // Improve the accuracy of manual timeupdates
+<span class="cstat-no" title="statement not covered" >    if (this.manualTimeUpdates) { <span class="cstat-no" title="statement not covered" >this.trigger('timeupdate'); </span>}</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  // Cache last currentTime and return
+  // Default to 0 seconds
+  return this.cache_.currentTime = (this.techGet('currentTime') || 0);
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-duration
+// Duration should return NaN if not available. ParseFloat will turn false-ish values to NaN.
+vjs.Player.prototype.duration = function(seconds){
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (seconds !== undefined) {
+&nbsp;
+    // Cache the last set value for optimiized scrubbing (esp. Flash)
+<span class="cstat-no" title="statement not covered" >    this.cache_.duration = parseFloat(seconds);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  return this.cache_.duration;
+};
+&nbsp;
+// Calculates how much time is left. Not in spec, but useful.
+vjs.Player.prototype.remainingTime = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  return this.duration() - this.currentTime();</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-buffered
+// Buffered returns a timerange object.
+// Kind of like an array of portions of the video that have been downloaded.
+// So far no browsers return more than one range (portion)
+vjs.Player.prototype.buffered = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  var buffered = this.techGet('buffered'),</span>
+      start = 0,
+      // Default end to 0 and store in values
+      end = this.cache_.bufferEnd = this.cache_.bufferEnd || 0;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (buffered &amp;&amp; buffered.length &gt; 0 &amp;&amp; buffered.end(0) !== end) {</span>
+<span class="cstat-no" title="statement not covered" >    end = buffered.end(0);</span>
+    // Storing values allows them be overridden by setBufferedFromProgress
+<span class="cstat-no" title="statement not covered" >    this.cache_.bufferEnd = end;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return vjs.createTimeRange(start, end);</span>
+};
+&nbsp;
+// Calculates amount of buffer is full. Not in spec but useful.
+vjs.Player.prototype.bufferedPercent = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  return (this.duration()) ? this.buffered().end(0) / this.duration() : 0;</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-volume
+vjs.Player.prototype.volume = function(percentAsDecimal){
+  var vol;
+&nbsp;
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (percentAsDecimal !== undefined) {
+<span class="cstat-no" title="statement not covered" >    vol = Math.max(0, Math.min(1, parseFloat(percentAsDecimal))); </span>// Force value to between 0 and 1
+<span class="cstat-no" title="statement not covered" >    this.cache_.volume = vol;</span>
+<span class="cstat-no" title="statement not covered" >    this.techCall('setVolume', vol);</span>
+<span class="cstat-no" title="statement not covered" >    vjs.setLocalStorage('volume', vol);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+&nbsp;
+  // Default to 1 when returning current volume.
+  vol = parseFloat(this.techGet('volume'));
+  return (isNaN(vol)) ? <span class="branch-0 cbranch-no" title="branch not covered" >1 </span>: vol;
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#attr-media-muted
+vjs.Player.prototype.muted = function(muted){
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (muted !== undefined) {
+<span class="cstat-no" title="statement not covered" >    this.techCall('setMuted', muted);</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+  return this.techGet('muted') || false; // Default to false
+};
+&nbsp;
+// Check if current tech can support native fullscreen (e.g. with built in controls lik iOS, so not our flash swf)
+vjs.Player.prototype.supportsFullScreen = <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >return this.techGet('supportsFullScreen') || false; </span>};
+&nbsp;
+// Turn on fullscreen (or window) mode
+vjs.Player.prototype.requestFullScreen = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  var requestFullScreen = vjs.support.requestFullScreen;</span>
+<span class="cstat-no" title="statement not covered" >  this.isFullScreen = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (requestFullScreen) {</span>
+    // the browser supports going fullscreen at the element level so we can
+    // take the controls fullscreen as well as the video
+&nbsp;
+    // Trigger fullscreenchange event after change
+    // We have to specifically add this each time, and remove
+    // when cancelling fullscreen. Otherwise if there's multiple
+    // players on a page, they would all be reacting to the same fullscreen
+    // events
+<span class="cstat-no" title="statement not covered" >    vjs.on(document, requestFullScreen.eventName, vjs.bind(this, <span class="fstat-no" title="function not covered" >function(e){</span></span>
+<span class="cstat-no" title="statement not covered" >      this.isFullScreen = document[requestFullScreen.isFullScreen];</span>
+&nbsp;
+      // If cancelling fullscreen, remove event listener.
+<span class="cstat-no" title="statement not covered" >      if (this.isFullScreen === false) {</span>
+<span class="cstat-no" title="statement not covered" >        vjs.off(document, requestFullScreen.eventName, arguments.callee);</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.trigger('fullscreenchange');</span>
+    }));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.el_[requestFullScreen.requestFn]();</span>
+&nbsp;
+  } else <span class="cstat-no" title="statement not covered" >if (this.tech.supportsFullScreen()) {</span>
+    // we can't take the video.js controls fullscreen but we can go fullscreen
+    // with native controls
+<span class="cstat-no" title="statement not covered" >    this.techCall('enterFullScreen');</span>
+  } else {
+    // fullscreen isn't supported so we'll just stretch the video element to
+    // fill the viewport
+<span class="cstat-no" title="statement not covered" >    this.enterFullWindow();</span>
+<span class="cstat-no" title="statement not covered" >    this.trigger('fullscreenchange');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+vjs.Player.prototype.cancelFullScreen = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  var requestFullScreen = vjs.support.requestFullScreen;</span>
+<span class="cstat-no" title="statement not covered" >  this.isFullScreen = false;</span>
+&nbsp;
+  // Check for browser element fullscreen support
+<span class="cstat-no" title="statement not covered" >  if (requestFullScreen) {</span>
+<span class="cstat-no" title="statement not covered" >    document[requestFullScreen.cancelFn]();</span>
+  } else <span class="cstat-no" title="statement not covered" >if (this.tech.supportsFullScreen()) {</span>
+<span class="cstat-no" title="statement not covered" >   this.techCall('exitFullScreen');</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >   this.exitFullWindow();</span>
+<span class="cstat-no" title="statement not covered" >   this.trigger('fullscreenchange');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+// When fullscreen isn't supported we can stretch the video container to as wide as the browser will let us.
+vjs.Player.prototype.enterFullWindow = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.isFullWindow = true;</span>
+&nbsp;
+  // Storing original doc overflow value to return to when fullscreen is off
+<span class="cstat-no" title="statement not covered" >  this.docOrigOverflow = document.documentElement.style.overflow;</span>
+&nbsp;
+  // Add listener for esc key to exit fullscreen
+<span class="cstat-no" title="statement not covered" >  vjs.on(document, 'keydown', vjs.bind(this, this.fullWindowOnEscKey));</span>
+&nbsp;
+  // Hide any scroll bars
+<span class="cstat-no" title="statement not covered" >  document.documentElement.style.overflow = 'hidden';</span>
+&nbsp;
+  // Apply fullscreen styles
+<span class="cstat-no" title="statement not covered" >  vjs.addClass(document.body, 'vjs-full-window');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.trigger('enterFullWindow');</span>
+};
+vjs.Player.prototype.fullWindowOnEscKey = <span class="fstat-no" title="function not covered" >function(event){</span>
+<span class="cstat-no" title="statement not covered" >  if (event.keyCode === 27) {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.isFullScreen === true) {</span>
+<span class="cstat-no" title="statement not covered" >      this.cancelFullScreen();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.exitFullWindow();</span>
+    }
+  }
+};
+&nbsp;
+vjs.Player.prototype.exitFullWindow = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.isFullWindow = false;</span>
+<span class="cstat-no" title="statement not covered" >  vjs.off(document, 'keydown', this.fullWindowOnEscKey);</span>
+&nbsp;
+  // Unhide scroll bars.
+<span class="cstat-no" title="statement not covered" >  document.documentElement.style.overflow = this.docOrigOverflow;</span>
+&nbsp;
+  // Remove fullscreen styles
+<span class="cstat-no" title="statement not covered" >  vjs.removeClass(document.body, 'vjs-full-window');</span>
+&nbsp;
+  // Resize the box, controller, and poster to original sizes
+  // this.positionAll();
+<span class="cstat-no" title="statement not covered" >  this.trigger('exitFullWindow');</span>
+};
+&nbsp;
+vjs.Player.prototype.selectSource = <span class="fstat-no" title="function not covered" >function(sources){</span>
+&nbsp;
+  // Loop through each playback technology in the options order
+<span class="cstat-no" title="statement not covered" >  for (var i=0,j=this.options_['techOrder'];i&lt;j.length;i++) {</span>
+<span class="cstat-no" title="statement not covered" >    var techName = vjs.capitalize(j[i]),</span>
+        tech = window['videojs'][techName];
+&nbsp;
+    // Check if the browser supports this technology
+<span class="cstat-no" title="statement not covered" >    if (tech.isSupported()) {</span>
+      // Loop through each source object
+<span class="cstat-no" title="statement not covered" >      for (var a=0,b=sources;a&lt;b.length;a++) {</span>
+<span class="cstat-no" title="statement not covered" >        var source = b[a];</span>
+&nbsp;
+        // Check if source can be played with this technology
+<span class="cstat-no" title="statement not covered" >        if (tech['canPlaySource'](source)) {</span>
+<span class="cstat-no" title="statement not covered" >          return { source: source, tech: techName };</span>
+        }
+      }
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return false;</span>
+};
+&nbsp;
+// src is a pretty powerful function
+// If you pass it an array of source objects, it will find the best source to play and use that object.src
+//   If the new source requires a new playback technology, it will switch to that.
+// If you pass it an object, it will set the source to object.src
+// If you pass it anything else (url string) it will set the video source to that
+vjs.Player.prototype.src = <span class="fstat-no" title="function not covered" >function(source){</span>
+  // Case: Array of source objects to choose from and pick the best to play
+<span class="cstat-no" title="statement not covered" >  if (source instanceof Array) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var sourceTech = this.selectSource(source),</span>
+        techName;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (sourceTech) {</span>
+<span class="cstat-no" title="statement not covered" >        source = sourceTech.source;</span>
+<span class="cstat-no" title="statement not covered" >        techName = sourceTech.tech;</span>
+&nbsp;
+      // If this technology is already loaded, set source
+<span class="cstat-no" title="statement not covered" >      if (techName == this.techName) {</span>
+<span class="cstat-no" title="statement not covered" >        this.src(source); </span>// Passing the source object
+      // Otherwise load this technology with chosen source
+      } else {
+<span class="cstat-no" title="statement not covered" >        this.loadTech(techName, source);</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.el_.appendChild(vjs.createEl('p', {</span>
+        innerHTML: 'Sorry, no compatible source and playback technology were found for this video. Try using another browser like &lt;a href="http://bit.ly/ccMUEC"&gt;Chrome&lt;/a&gt; or download the latest &lt;a href="http://adobe.ly/mwfN1"&gt;Adobe Flash Player&lt;/a&gt;.'
+      }));
+    }
+&nbsp;
+  // Case: Source object { src: '', type: '' ... }
+  } else <span class="cstat-no" title="statement not covered" >if (source instanceof Object) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (window['videojs'][this.techName]['canPlaySource'](source)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.src(source.src);</span>
+    } else {
+      // Send through tech loop to check for a compatible technology.
+<span class="cstat-no" title="statement not covered" >      this.src([source]);</span>
+    }
+&nbsp;
+  // Case: URL String (http://myvideo...)
+  } else {
+    // Cache for getting last set source
+<span class="cstat-no" title="statement not covered" >    this.cache_.src = source;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!this.isReady_) {</span>
+<span class="cstat-no" title="statement not covered" >      this.ready(<span class="fstat-no" title="function not covered" >function(){</span></span>
+<span class="cstat-no" title="statement not covered" >        this.src(source);</span>
+      });
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.techCall('src', source);</span>
+<span class="cstat-no" title="statement not covered" >      if (this.options_['preload'] == 'auto') {</span>
+<span class="cstat-no" title="statement not covered" >        this.load();</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (this.options_['autoplay']) {</span>
+<span class="cstat-no" title="statement not covered" >        this.play();</span>
+      }
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+// Begin loading the src data
+// http://dev.w3.org/html5/spec/video.html#dom-media-load
+vjs.Player.prototype.load = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  this.techCall('load');</span>
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+// http://dev.w3.org/html5/spec/video.html#dom-media-currentsrc
+vjs.Player.prototype.currentSrc = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  return this.techGet('currentSrc') || this.cache_.src || '';</span>
+};
+&nbsp;
+// Attributes/Options
+vjs.Player.prototype.preload = <span class="fstat-no" title="function not covered" >function(value){</span>
+<span class="cstat-no" title="statement not covered" >  if (value !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    this.techCall('setPreload', value);</span>
+<span class="cstat-no" title="statement not covered" >    this.options_['preload'] = value;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this.techGet('preload');</span>
+};
+vjs.Player.prototype.autoplay = <span class="fstat-no" title="function not covered" >function(value){</span>
+<span class="cstat-no" title="statement not covered" >  if (value !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    this.techCall('setAutoplay', value);</span>
+<span class="cstat-no" title="statement not covered" >    this.options_['autoplay'] = value;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this.techGet('autoplay', value);</span>
+};
+vjs.Player.prototype.loop = <span class="fstat-no" title="function not covered" >function(value){</span>
+<span class="cstat-no" title="statement not covered" >  if (value !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >    this.techCall('setLoop', value);</span>
+<span class="cstat-no" title="statement not covered" >    this.options_['loop'] = value;</span>
+<span class="cstat-no" title="statement not covered" >    return this;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this.techGet('loop');</span>
+};
+&nbsp;
+/**
+ * The url of the poster image source.
+ * @type {String}
+ * @private
+ */
+vjs.Player.prototype.poster_;
+&nbsp;
+/**
+ * Get or set the poster image source url.
+ * @param  {String} src Poster image source URL
+ * @return {String}    Poster image source URL or null
+ */
+vjs.Player.prototype.poster = function(src){
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (src !== undefined) {
+<span class="cstat-no" title="statement not covered" >    this.poster_ = src;</span>
+  }
+  return this.poster_;
+};
+&nbsp;
+/**
+ * Whether or not the controls are showing
+ * @type {Boolean}
+ * @private
+ */
+vjs.Player.prototype.controls_;
+&nbsp;
+/**
+ * Get or set whether or not the controls are showing.
+ * @param  {Boolean} controls Set controls to showing or not
+ * @return {Boolean}    Controls are showing
+ */
+vjs.Player.prototype.controls = function(controls){
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (controls !== undefined) {
+    // Don't trigger a change event unless it actually changed
+<span class="cstat-no" title="statement not covered" >    if (this.controls_ !== controls) {</span>
+<span class="cstat-no" title="statement not covered" >      this.controls_ = !!controls; </span>// force boolean
+<span class="cstat-no" title="statement not covered" >      this.trigger('controlschange');</span>
+    }
+  }
+  return this.controls_;
+};
+&nbsp;
+vjs.Player.prototype.error = <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >return this.techGet('error'); </span>};
+vjs.Player.prototype.ended = <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >return this.techGet('ended'); </span>};
+&nbsp;
+// Methods to add support for
+// networkState: function(){ return this.techCall('networkState'); },
+// readyState: function(){ return this.techCall('readyState'); },
+// seeking: function(){ return this.techCall('seeking'); },
+// initialTime: function(){ return this.techCall('initialTime'); },
+// startOffsetTime: function(){ return this.techCall('startOffsetTime'); },
+// played: function(){ return this.techCall('played'); },
+// seekable: function(){ return this.techCall('seekable'); },
+// videoTracks: function(){ return this.techCall('videoTracks'); },
+// audioTracks: function(){ return this.techCall('audioTracks'); },
+// videoWidth: function(){ return this.techCall('videoWidth'); },
+// videoHeight: function(){ return this.techCall('videoHeight'); },
+// defaultPlaybackRate: function(){ return this.techCall('defaultPlaybackRate'); },
+// playbackRate: function(){ return this.techCall('playbackRate'); },
+// mediaGroup: function(){ return this.techCall('mediaGroup'); },
+// controller: function(){ return this.techCall('controller'); },
+// defaultMuted: function(){ return this.techCall('defaultMuted'); }
+&nbsp;
+// TODO
+// currentSrcList: the array of sources including other formats and bitrates
+// playList: array of source lists in order of playback
+&nbsp;
+// RequestFullscreen API
+(function(){
+  var prefix, requestFS, div;
+&nbsp;
+  div = document.createElement('div');
+&nbsp;
+  requestFS = {};
+&nbsp;
+  // Current W3C Spec
+  // http://dvcs.w3.org/hg/fullscreen/raw-file/tip/Overview.html#api
+  // Mozilla Draft: https://wiki.mozilla.org/Gecko:FullScreenAPI#fullscreenchange_event
+  // New: https://dvcs.w3.org/hg/fullscreen/raw-file/529a67b8d9f3/Overview.html
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (div.cancelFullscreen !== undefined) {
+<span class="cstat-no" title="statement not covered" >    requestFS.requestFn = 'requestFullscreen';</span>
+<span class="cstat-no" title="statement not covered" >    requestFS.cancelFn = 'exitFullscreen';</span>
+<span class="cstat-no" title="statement not covered" >    requestFS.eventName = 'fullscreenchange';</span>
+<span class="cstat-no" title="statement not covered" >    requestFS.isFullScreen = 'fullScreen';</span>
+&nbsp;
+  // Webkit (Chrome/Safari) and Mozilla (Firefox) have working implementations
+  // that use prefixes and vary slightly from the new W3C spec. Specifically,
+  // using 'exit' instead of 'cancel', and lowercasing the 'S' in Fullscreen.
+  // Other browsers don't have any hints of which version they might follow yet,
+  // so not going to try to predict by looping through all prefixes.
+  } else {
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken"" >I</span>if (document.mozCancelFullScreen) {
+<span class="cstat-no" title="statement not covered" >      prefix = 'moz';</span>
+<span class="cstat-no" title="statement not covered" >      requestFS.isFullScreen = prefix + 'FullScreen';</span>
+    } else {
+      prefix = 'webkit';
+      requestFS.isFullScreen = prefix + 'IsFullScreen';
+    }
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (div[prefix + 'RequestFullScreen']) {
+      requestFS.requestFn = prefix + 'RequestFullScreen';
+      requestFS.cancelFn = prefix + 'CancelFullScreen';
+    }
+    requestFS.eventName = prefix + 'fullscreenchange';
+  }
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (document[requestFS.cancelFn]) {
+    vjs.support.requestFullScreen = requestFS;
+  }
+&nbsp;
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class='footer'>
+    <div class='meta'>Generated by <a href='http://istanbul-js.org' target='_blank'>istanbul</a> at Thu Jun 20 2013 14:50:52 GMT-0700 (PDT)</div>
+</div>
+</body>
+
+<script src="../prettify.js"></script>
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script>
+
+    YUI().use('datatable', function (Y) {
+
+        var formatters = {
+          pct: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              try {
+                  return o.value.toFixed(2) + '%';
+              } catch (ex) { return o.value + '%'; }
+          },
+          html: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.record.get(o.column.key + '_html');
+          }
+        },
+          defaultFormatter = function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.value;
+          };
+
+        function getColumns(theadNode) {
+            var colNodes = theadNode.all('tr th'),
+                cols = [],
+                col;
+            colNodes.each(function (colNode) {
+                col = {
+                    key: colNode.getAttribute('data-col'),
+                    label: colNode.get('innerHTML') || ' ',
+                    sortable: !colNode.getAttribute('data-nosort'),
+                    className: colNode.getAttribute('class'),
+                    type: colNode.getAttribute('data-type'),
+                    allowHTML: colNode.getAttribute('data-html') === 'true' || colNode.getAttribute('data-fmt') === 'html'
+                };
+                col.formatter = formatters[colNode.getAttribute('data-fmt')] || defaultFormatter;
+                cols.push(col);
+            });
+            return cols;
+        }
+
+        function getRowData(trNode, cols) {
+            var tdNodes = trNode.all('td'),
+                    i,
+                    row = { classes: {} },
+                    node,
+                    name;
+            for (i = 0; i < cols.length; i += 1) {
+                name = cols[i].key;
+                node = tdNodes.item(i);
+                row[name] = node.getAttribute('data-value') || node.get('innerHTML');
+                row[name + '_html'] = node.get('innerHTML');
+                row.classes[name] = node.getAttribute('class');
+                //Y.log('Name: ' + name + '; Value: ' + row[name]);
+                if (cols[i].type === 'number') { row[name] = row[name] * 1; }
+            }
+            //Y.log(row);
+            return row;
+        }
+
+        function getData(tbodyNode, cols) {
+            var data = [];
+            tbodyNode.all('tr').each(function (trNode) {
+                data.push(getRowData(trNode, cols));
+            });
+            return data;
+        }
+
+        function replaceTable(node) {
+            if (!node) { return; }
+            var cols = getColumns(node.one('thead')),
+                data = getData(node.one('tbody'), cols),
+                table,
+                parent = node.get('parentNode');
+
+            table = new Y.DataTable({
+                columns: cols,
+                data: data,
+                sortBy: 'file'
+            });
+            parent.set('innerHTML', '');
+            table.render(parent);
+        }
+
+        Y.on('domready', function () {
+            replaceTable(Y.one('div.coverage-summary table'));
+            if (typeof prettyPrint === 'function') {
+                prettyPrint();
+            }
+        });
+    });
+</script>
+</html>

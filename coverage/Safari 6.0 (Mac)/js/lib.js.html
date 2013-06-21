@@ -1,0 +1,2175 @@
+<!doctype html>
+<html>
+<head>
+    <title>Code coverage report for js/lib.js</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="en-gb">
+    
+        <link rel='stylesheet' href='../prettify.css'>
+    
+    <style type='text/css'>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: "Helvetic Neue", Helvetica,Arial;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 10em;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: consolas, menlo, monaco, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 14px;
+            font-size: 14px;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+            xtext-decoration: line-through;
+        }
+        .missing-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { text-decoration: none; color: #000; }
+        div.coverage-summary a:visited { text-decoration: none; color: #333; }
+        div.coverage-summary a:hover { text-decoration: underline; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: url("http://yui.yahooapis.com/3.6.0/build/datatable-sort/assets/skins/sam/sort-arrow-sprite.png") no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+    </style>
+</head>
+<body>
+<div class='header medium'>
+    <h1>Code coverage report for <span class='entity'>js/lib.js</span></h1>
+    <h2>
+        
+        Statements: <span class='metric'>71.23% <small>(156 / 219)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class='metric'>61.38% <small>(89 / 145)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class='metric'>65.85% <small>(27 / 41)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class='metric'>73.66% <small>(151 / 205)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">js/</a> &#187; lib.js</div>
+</div>
+<div class='body'>
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">156</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">156</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">356</span>
+<span class="cline-any cline-yes">114</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">242</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">156</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">92</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">24</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-yes">85</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">296</span>
+<span class="cline-any cline-yes">172</span>
+<span class="cline-any cline-yes">200</span>
+<span class="cline-any cline-yes">200</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">172</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">109</span>
+<span class="cline-any cline-yes">109</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">109</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">109</span>
+<span class="cline-any cline-yes">135</span>
+<span class="cline-any cline-yes">135</span>
+<span class="cline-any cline-yes">135</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">135</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">133</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">109</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">234</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">141</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">600</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">943</span>
+<span class="cline-any cline-yes">943</span>
+<span class="cline-any cline-yes">74</span>
+<span class="cline-any cline-yes">74</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">943</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">142</span>
+<span class="cline-any cline-yes">142</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-yes">158</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-yes">60</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">803</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">682</span>
+<span class="cline-any cline-yes">682</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">121</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">7</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-yes">37</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var hasOwnProp = Object.prototype.hasOwnProperty;
+&nbsp;
+/**
+ * Creates an element and applies properties.
+ * @param  {String=} tagName    Name of tag to be created.
+ * @param  {Object=} properties Element properties to be applied.
+ * @return {Element}
+ */
+vjs.createEl = function(tagName, properties){
+  var el = document.createElement(tagName || 'div');
+&nbsp;
+  for (var propName in properties){
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (hasOwnProp.call(properties, propName)) {
+      //el[propName] = properties[propName];
+      // Not remembering why we were checking for dash
+      // but using setAttribute means you have to use getAttribute
+&nbsp;
+      // The check for dash checks for the aria-* attributes, like aria-label, aria-valuemin.
+      // The additional check for "role" is because the default method for adding attributes does not
+      // add the attribute "role". My guess is because it's not a valid attribute in some namespaces, although
+      // browsers handle the attribute just fine. The W3C allows for aria-* attributes to be used in pre-HTML5 docs.
+      // http://www.w3.org/TR/wai-aria-primer/#ariahtml. Using setAttribute gets around this problem.
+&nbsp;
+       if (propName.indexOf('aria-') !== -1 || propName=='role') {
+         el.setAttribute(propName, properties[propName]);
+       } else {
+         el[propName] = properties[propName];
+       }
+    }
+  }
+  return el;
+};
+&nbsp;
+/**
+ * Uppercase the first letter of a string
+ * @param  {String} string String to be uppercased
+ * @return {String}
+ */
+vjs.capitalize = function(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
+&nbsp;
+/**
+ * Object functions container
+ * @type {Object}
+ */
+vjs.obj = {};
+&nbsp;
+/**
+ * Object.create shim for prototypal inheritance.
+ * https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/create
+ * @param  {Object}   obj Object to use as prototype
+ */
+ vjs.obj.create = Object.create || <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function(obj){</span></span>
+  //Create a new function called 'F' which is just an empty object.
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  function F() {</span>}</span>
+&nbsp;
+  //the prototype of the 'F' function should point to the
+  //parameter of the anonymous function.
+<span class="cstat-no" title="statement not covered" >  F.prototype = obj;</span>
+&nbsp;
+  //create a new constructor function based off of the 'F' function.
+<span class="cstat-no" title="statement not covered" >  return new F();</span>
+};
+&nbsp;
+/**
+ * Loop through each property in an object and call a function
+ * whose arguments are (key,value)
+ * @param  {Object}   obj Object of properties
+ * @param  {Function} fn  Function to be called on each property.
+ * @this {*}
+ */
+vjs.obj.each = function(obj, fn, context){
+  for (var key in obj) {
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (hasOwnProp.call(obj, key)) {
+      fn.call(context || this, key, obj[key]);
+    }
+  }
+};
+&nbsp;
+/**
+ * Merge two objects together and return the original.
+ * @param  {Object} obj1
+ * @param  {Object} obj2
+ * @return {Object}
+ */
+vjs.obj.merge = function(obj1, obj2){
+  if (!obj2) { return obj1; }
+  for (var key in obj2){
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (hasOwnProp.call(obj2, key)) {
+      obj1[key] = obj2[key];
+    }
+  }
+  return obj1;
+};
+&nbsp;
+/**
+ * Merge two objects, and merge any properties that are objects
+ * instead of just overwriting one. Uses to merge options hashes
+ * where deeper default settings are important.
+ * @param  {Object} obj1 Object to override
+ * @param  {Object} obj2 Overriding object
+ * @return {Object}      New object. Obj1 and Obj2 will be untouched.
+ */
+vjs.obj.deepMerge = function(obj1, obj2){
+  var key, val1, val2, objDef;
+  objDef = '[object Object]';
+&nbsp;
+  // Make a copy of obj1 so we're not ovewriting original values.
+  // like prototype.options_ and all sub options objects
+  obj1 = vjs.obj.copy(obj1);
+&nbsp;
+  for (key in obj2){
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (hasOwnProp.call(obj2, key)) {
+      val1 = obj1[key];
+      val2 = obj2[key];
+&nbsp;
+      // Check if both properties are pure objects and do a deep merge if so
+      if (vjs.obj.isPlain(val1) &amp;&amp; vjs.obj.isPlain(val2)) {
+        obj1[key] = vjs.obj.deepMerge(val1, val2);
+      } else {
+        obj1[key] = obj2[key];
+      }
+    }
+  }
+  return obj1;
+};
+&nbsp;
+/**
+ * Make a copy of the supplied object
+ * @param  {Object} obj Object to copy
+ * @return {Object}     Copy of object
+ */
+vjs.obj.copy = function(obj){
+  return vjs.obj.merge({}, obj);
+};
+&nbsp;
+/**
+ * Check if an object is plain, and not a dom node or any object sub-instance
+ * @param  {Object} obj Object to check
+ * @return {Boolean}     True if plain, false otherwise
+ */
+vjs.obj.isPlain = function(obj){
+  return !!obj
+    &amp;&amp; typeof obj === 'object'
+    &amp;&amp; obj.toString() === '[object Object]'
+    &amp;&amp; obj.constructor === Object;
+};
+&nbsp;
+/**
+ * Bind (a.k.a proxy or Context). A simple method for changing the context of a function
+   It also stores a unique id on the function so it can be easily removed from events
+ * @param  {*}   context The object to bind as scope
+ * @param  {Function} fn      The function to be bound to a scope
+ * @param  {Number=}   uid     An optional unique ID for the function to be set
+ * @return {Function}
+ */
+vjs.bind = function(context, fn, uid) {
+  // Make sure the function has a unique ID
+  if (!fn.guid) { fn.guid = vjs.guid++; }
+&nbsp;
+  // Create the new function that changes the context
+  var ret = function() {
+    return fn.apply(context, arguments);
+  };
+&nbsp;
+  // Allow for the ability to individualize this function
+  // Needed in the case where multiple objects might share the same prototype
+  // IF both items add an event listener with the same function, then you try to remove just one
+  // it will remove both because they both have the same guid.
+  // when using this, you need to use the bind method when you remove the listener as well.
+  // currently used in text tracks
+  ret.guid = (uid) ? <span class="branch-0 cbranch-no" title="branch not covered" >uid + '_' + fn.guid </span>: fn.guid;
+&nbsp;
+  return ret;
+};
+&nbsp;
+/**
+ * Element Data Store. Allows for binding data to an element without putting it directly on the element.
+ * Ex. Event listneres are stored here.
+ * (also from jsninja.com, slightly modified and updated for closure compiler)
+ * @type {Object}
+ */
+vjs.cache = {};
+&nbsp;
+/**
+ * Unique ID for an element or function
+ * @type {Number}
+ */
+vjs.guid = 1;
+&nbsp;
+/**
+ * Unique attribute name to store an element's guid in
+ * @type {String}
+ * @constant
+ */
+vjs.expando = 'vdata' + (new Date()).getTime();
+&nbsp;
+/**
+ * Returns the cache object where data for an element is stored
+ * @param  {Element} el Element to store data for.
+ * @return {Object}
+ */
+vjs.getData = function(el){
+  var id = el[vjs.expando];
+  if (!id) {
+    id = el[vjs.expando] = vjs.guid++;
+    vjs.cache[id] = {};
+  }
+  return vjs.cache[id];
+};
+&nbsp;
+/**
+ * Returns the cache object where data for an element is stored
+ * @param  {Element} el Element to store data for.
+ * @return {Object}
+ */
+vjs.hasData = function(el){
+  var id = el[vjs.expando];
+  return !(!id || vjs.isEmpty(vjs.cache[id]));
+};
+&nbsp;
+/**
+ * Delete data for the element from the cache and the guid attr from getElementById
+ * @param  {Element} el Remove data for an element
+ */
+vjs.removeData = function(el){
+  var id = el[vjs.expando];
+  if (!id) { return; }
+  // Remove all stored data
+  // Changed to = null
+  // http://coding.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/
+  // vjs.cache[id] = null;
+  delete vjs.cache[id];
+&nbsp;
+  // Remove the expando property from the DOM node
+  try {
+    delete el[vjs.expando];
+  } catch(e) {
+<span class="cstat-no" title="statement not covered" >    if (el.removeAttribute) {</span>
+<span class="cstat-no" title="statement not covered" >      el.removeAttribute(vjs.expando);</span>
+    } else {
+      // IE doesn't appear to support removeAttribute on the document element
+<span class="cstat-no" title="statement not covered" >      el[vjs.expando] = null;</span>
+    }
+  }
+};
+&nbsp;
+vjs.isEmpty = function(obj) {
+  for (var prop in obj) {
+    // Inlude null properties as empty.
+    <span class="missing-if-branch" title="else path not taken"" >E</span>if (obj[prop] !== null) {
+      return false;
+    }
+  }
+  return true;
+};
+&nbsp;
+/**
+ * Add a CSS class name to an element
+ * @param {Element} element    Element to add class name to
+ * @param {String} classToAdd Classname to add
+ */
+vjs.addClass = function(element, classToAdd){
+  if ((' '+element.className+' ').indexOf(' '+classToAdd+' ') == -1) {
+    element.className = element.className === '' ? classToAdd : element.className + ' ' + classToAdd;
+  }
+};
+&nbsp;
+/**
+ * Remove a CSS class name from an element
+ * @param {Element} element    Element to remove from class name
+ * @param {String} classToAdd Classname to remove
+ */
+vjs.removeClass = function(element, classToRemove){
+  if (element.className.indexOf(classToRemove) == -1) { return; }
+  var classNames = element.className.split(' ');
+  // IE8 Does not support array.indexOf so using a for loop
+  for (var i = classNames.length - 1; i &gt;= 0; i--) {
+    if (classNames[i] === classToRemove) {
+      classNames.splice(i,1);
+    }
+  }
+  // classNames.splice(classNames.indexOf(classToRemove),1);
+  element.className = classNames.join(' ');
+};
+&nbsp;
+/**
+ * Element for testing browser HTML5 video capabilities
+ * @type {Element}
+ * @constant
+ */
+vjs.TEST_VID = vjs.createEl('video');
+&nbsp;
+/**
+ * Useragent for browser testing.
+ * @type {String}
+ * @constant
+ */
+vjs.USER_AGENT = navigator.userAgent;
+&nbsp;
+/**
+ * Device is an iPhone
+ * @type {Boolean}
+ * @constant
+ */
+vjs.IS_IPHONE = !!vjs.USER_AGENT.match(/iPhone/i);
+vjs.IS_IPAD = !!vjs.USER_AGENT.match(/iPad/i);
+vjs.IS_IPOD = !!vjs.USER_AGENT.match(/iPod/i);
+vjs.IS_IOS = vjs.IS_IPHONE || vjs.IS_IPAD || vjs.IS_IPOD;
+&nbsp;
+vjs.IOS_VERSION = (function(){
+  var match = vjs.USER_AGENT.match(/OS (\d+)_/i);
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (match &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >match[1])</span> { <span class="cstat-no" title="statement not covered" >return match[1]; </span>}
+})();
+&nbsp;
+vjs.IS_ANDROID = !!vjs.USER_AGENT.match(/Android.*AppleWebKit/i);
+vjs.ANDROID_VERSION = (function() {
+  var match = vjs.USER_AGENT.match(/Android (\d+)\./i);
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (match &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >match[1])</span> {
+<span class="cstat-no" title="statement not covered" >    return match[1];</span>
+  }
+  return null;
+})();
+&nbsp;
+vjs.IS_FIREFOX = <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >return !!vjs.USER_AGENT.match('Firefox'); </span>};
+&nbsp;
+&nbsp;
+/**
+ * Get an element's attribute values, as defined on the HTML tag
+ * Attributs are not the same as properties. They're defined on the tag
+ * or with setAttribute (which shouldn't be used with HTML)
+ * This will return true or false for boolean attributes.
+ * @param  {Element} tag Element from which to get tag attributes
+ * @return {Object}
+ */
+vjs.getAttributeValues = function(tag){
+  var obj = {};
+&nbsp;
+  // Known boolean attributes
+  // We can check for matching boolean properties, but older browsers
+  // won't know about HTML5 boolean attributes that we still read from.
+  // Bookending with commas to allow for an easy string search.
+  var knownBooleans = ','+'autoplay,controls,loop,muted,default'+',';
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken"" >E</span>if (tag &amp;&amp; tag.attributes &amp;&amp; tag.attributes.length &gt; 0) {
+    var attrs = tag.attributes;
+    var attrName, attrVal;
+&nbsp;
+    for (var i = attrs.length - 1; i &gt;= 0; i--) {
+      attrName = attrs[i].name;
+      attrVal = attrs[i].value;
+&nbsp;
+      // Check for known booleans
+      // The matching element property will return a value for typeof
+      <span class="missing-if-branch" title="if path not taken"" >I</span>if (typeof tag[attrName] === 'boolean' || knownBooleans.indexOf(','+attrName+',') !== -1) {
+        // The value of an included boolean attribute is typically an empty string ('')
+        // which would equal false if we just check for a false value.
+        // We also don't want support bad code like autoplay='false'
+<span class="cstat-no" title="statement not covered" >        attrVal = (attrVal !== null) ? true : false;</span>
+      }
+&nbsp;
+      obj[attrName] = attrVal;
+    }
+  }
+&nbsp;
+  return obj;
+};
+&nbsp;
+/**
+ * Get the computed style value for an element
+ * From http://robertnyman.com/2006/04/24/get-the-rendered-style-of-an-element/
+ * @param  {Element} el        Element to get style value for
+ * @param  {String} strCssRule Style name
+ * @return {String}            Style value
+ */
+vjs.getComputedDimension = <span class="fstat-no" title="function not covered" >function(el, strCssRule){</span>
+<span class="cstat-no" title="statement not covered" >  var strValue = '';</span>
+<span class="cstat-no" title="statement not covered" >  if(document.defaultView &amp;&amp; document.defaultView.getComputedStyle){</span>
+<span class="cstat-no" title="statement not covered" >    strValue = document.defaultView.getComputedStyle(el, '').getPropertyValue(strCssRule);</span>
+&nbsp;
+  } else <span class="cstat-no" title="statement not covered" >if(el.currentStyle){</span>
+    // IE8 Width/Height support
+<span class="cstat-no" title="statement not covered" >    strValue = el['client'+strCssRule.substr(0,1).toUpperCase() + strCssRule.substr(1)] + 'px';</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return strValue;</span>
+};
+&nbsp;
+/**
+ * Insert an element as the first child node of another
+ * @param  {Element} child   Element to insert
+ * @param  {[type]} parent Element to insert child into
+ */
+vjs.insertFirst = function(child, parent){
+  if (parent.firstChild) {
+    parent.insertBefore(child, parent.firstChild);
+  } else {
+    parent.appendChild(child);
+  }
+};
+&nbsp;
+/**
+ * Object to hold browser support information
+ * @type {Object}
+ */
+vjs.support = {};
+&nbsp;
+/**
+ * Shorthand for document.getElementById()
+ * Also allows for CSS (jQuery) ID syntax. But nothing other than IDs.
+ * @param  {String} id  Element ID
+ * @return {Element}    Element with supplied ID
+ */
+vjs.el = <span class="fstat-no" title="function not covered" >function(id){</span>
+<span class="cstat-no" title="statement not covered" >  if (id.indexOf('#') === 0) {</span>
+<span class="cstat-no" title="statement not covered" >    id = id.slice(1);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return document.getElementById(id);</span>
+};
+&nbsp;
+/**
+ * Format seconds as a time string, H:MM:SS or M:SS
+ * Supplying a guide (in seconds) will force a number of leading zeros
+ * to cover the length of the guide
+ * @param  {Number} seconds Number of seconds to be turned into a string
+ * @param  {Number} guide   Number (in seconds) to model the string after
+ * @return {String}         Time formatted as H:MM:SS or M:SS
+ */
+vjs.formatTime = function(seconds, guide) {
+  guide = guide || seconds; // Default to using seconds as guide
+  var s = Math.floor(seconds % 60),
+      m = Math.floor(seconds / 60 % 60),
+      h = Math.floor(seconds / 3600),
+      gm = Math.floor(guide / 60 % 60),
+      gh = Math.floor(guide / 3600);
+&nbsp;
+  // Check if we need to show hours
+  h = (h &gt; 0 || gh &gt; 0) ? h + ':' : '';
+&nbsp;
+  // If hours are showing, we may need to add a leading zero.
+  // Always show at least one digit of minutes.
+  m = (((h || gm &gt;= 10) &amp;&amp; m &lt; 10) ? '0' + m : m) + ':';
+&nbsp;
+  // Check if leading zero is need for seconds
+  s = (s &lt; 10) ? '0' + s : s;
+&nbsp;
+  return h + m + s;
+};
+&nbsp;
+// Attempt to block the ability to select text while dragging controls
+vjs.blockTextSelection = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  document.body.focus();</span>
+<span class="cstat-no" title="statement not covered" >  document.onselectstart = <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return false; </span>};</span>
+};
+// Turn off text selection blocking
+vjs.unblockTextSelection = <span class="fstat-no" title="function not covered" >function(){</span> <span class="cstat-no" title="statement not covered" >document.onselectstart = <span class="fstat-no" title="function not covered" >function () {</span> <span class="cstat-no" title="statement not covered" >return true; </span>}; </span>};
+&nbsp;
+/**
+ * Trim whitespace from the ends of a string.
+ * @param  {String} string String to trim
+ * @return {String}        Trimmed string
+ */
+vjs.trim = function(string){
+  return string.toString().replace(/^\s+/, '').replace(/\s+$/, '');
+};
+&nbsp;
+/**
+ * Should round off a number to a decimal place
+ * @param  {Number} num Number to round
+ * @param  {Number} dec Number of decimal places to round to
+ * @return {Number}     Rounded number
+ */
+vjs.round = function(num, dec) {
+  if (!dec) { dec = 0; }
+  return Math.round(num*Math.pow(10,dec))/Math.pow(10,dec);
+};
+&nbsp;
+/**
+ * Should create a fake TimeRange object
+ * Mimics an HTML5 time range instance, which has functions that
+ * return the start and end times for a range
+ * TimeRanges are returned by the buffered() method
+ * @param  {Number} start Start time in seconds
+ * @param  {Number} end   End time in seconds
+ * @return {Object}       Fake TimeRange object
+ */
+vjs.createTimeRange = function(start, end){
+  return {
+    length: 1,
+    start: function() { return start; },
+    end: function() { return end; }
+  };
+};
+&nbsp;
+/**
+ * Simple http request for retrieving external files (e.g. text tracks)
+ * @param  {String} url           URL of resource
+ * @param  {Function=} onSuccess  Success callback
+ * @param  {Function=} onError    Error callback
+ */
+vjs.get = <span class="fstat-no" title="function not covered" >function(url, onSuccess, onError){</span>
+<span class="cstat-no" title="statement not covered" >  var local = (url.indexOf('file:') === 0 || (window.location.href.indexOf('file:') === 0 &amp;&amp; url.indexOf('http') === -1));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof XMLHttpRequest === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    window.XMLHttpRequest = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      try { <span class="cstat-no" title="statement not covered" >return new window.ActiveXObject('Msxml2.XMLHTTP.6.0'); </span>} catch (e) {}</span>
+<span class="cstat-no" title="statement not covered" >      try { <span class="cstat-no" title="statement not covered" >return new window.ActiveXObject('Msxml2.XMLHTTP.3.0'); </span>} catch (f) {}</span>
+<span class="cstat-no" title="statement not covered" >      try { <span class="cstat-no" title="statement not covered" >return new window.ActiveXObject('Msxml2.XMLHTTP'); </span>} catch (g) {}</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('This browser does not support XMLHttpRequest.');</span>
+    };
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var request = new XMLHttpRequest();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    request.open('GET', url);</span>
+  } catch(e) {
+<span class="cstat-no" title="statement not covered" >    onError(e);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request.onreadystatechange = <span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >    if (request.readyState === 4) {</span>
+<span class="cstat-no" title="statement not covered" >      if (request.status === 200 || local &amp;&amp; request.status === 0) {</span>
+<span class="cstat-no" title="statement not covered" >        onSuccess(request.responseText);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        if (onError) {</span>
+<span class="cstat-no" title="statement not covered" >          onError();</span>
+        }
+      }
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    request.send();</span>
+  } catch(e) {
+<span class="cstat-no" title="statement not covered" >    if (onError) {</span>
+<span class="cstat-no" title="statement not covered" >      onError(e);</span>
+    }
+  }
+};
+&nbsp;
+/* Local Storage
+================================================================================ */
+vjs.setLocalStorage = <span class="fstat-no" title="function not covered" >function(key, value){</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    // IE was throwing errors referencing the var anywhere without this
+<span class="cstat-no" title="statement not covered" >    var localStorage = window.localStorage || false;</span>
+<span class="cstat-no" title="statement not covered" >    if (!localStorage) { <span class="cstat-no" title="statement not covered" >return; </span>}</span>
+<span class="cstat-no" title="statement not covered" >    localStorage[key] = value;</span>
+  } catch(e) {
+<span class="cstat-no" title="statement not covered" >    if (e.code == 22 || e.code == 1014) { // Webkit == 22 / Firefox == 1014</span>
+<span class="cstat-no" title="statement not covered" >      vjs.log('LocalStorage Full (VideoJS)', e);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      if (e.code == 18) {</span>
+<span class="cstat-no" title="statement not covered" >        vjs.log('LocalStorage not allowed (VideoJS)', e);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        vjs.log('LocalStorage Error (VideoJS)', e);</span>
+      }
+    }
+  }
+};
+&nbsp;
+/**
+ * Get abosolute version of relative URL. Used to tell flash correct URL.
+ * http://stackoverflow.com/questions/470832/getting-an-absolute-url-from-a-relative-one-ie6-issue
+ * @param  {String} url URL to make absolute
+ * @return {String}     Absolute URL
+ */
+vjs.getAbsoluteURL = function(url){
+&nbsp;
+  // Check if absolute URL
+  <span class="missing-if-branch" title="if path not taken"" >I</span>if (!url.match(/^https?:\/\//)) {
+    // Convert to absolute URL. Flash hosted off-site needs an absolute URL.
+<span class="cstat-no" title="statement not covered" >    url = vjs.createEl('div', {</span>
+      innerHTML: '&lt;a href="'+url+'"&gt;x&lt;/a&gt;'
+    }).firstChild.href;
+  }
+&nbsp;
+  return url;
+};
+&nbsp;
+// usage: log('inside coolFunc',this,arguments);
+// http://paulirish.com/2009/log-a-lightweight-wrapper-for-consolelog/
+vjs.log = <span class="fstat-no" title="function not covered" >function(){</span>
+<span class="cstat-no" title="statement not covered" >  vjs.log.history = vjs.log.history || []; </span>  // store logs to an array for reference
+<span class="cstat-no" title="statement not covered" >  vjs.log.history.push(arguments);</span>
+<span class="cstat-no" title="statement not covered" >  if(window.console){</span>
+<span class="cstat-no" title="statement not covered" >    window.console.log(Array.prototype.slice.call(arguments));</span>
+  }
+};
+&nbsp;
+// Offset Left
+// getBoundingClientRect technique from John Resig http://ejohn.org/blog/getboundingclientrect-is-awesome/
+vjs.findPosition = function(el) {
+    var box, docEl, body, clientLeft, scrollLeft, left, clientTop, scrollTop, top;
+&nbsp;
+    if (el.getBoundingClientRect &amp;&amp; el.parentNode) {
+      box = el.getBoundingClientRect();
+    }
+&nbsp;
+    if (!box) {
+      return {
+        left: 0,
+        top: 0
+      };
+    }
+&nbsp;
+    docEl = document.documentElement;
+    body = document.body;
+&nbsp;
+    clientLeft = docEl.clientLeft || body.clientLeft || 0;
+    scrollLeft = window.pageXOffset || body.scrollLeft;
+    left = box.left + scrollLeft - clientLeft;
+&nbsp;
+    clientTop = docEl.clientTop || body.clientTop || 0;
+    scrollTop = window.pageYOffset || body.scrollTop;
+    top = box.top + scrollTop - clientTop;
+&nbsp;
+    return {
+      left: left,
+      top: top
+    };
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class='footer'>
+    <div class='meta'>Generated by <a href='http://istanbul-js.org' target='_blank'>istanbul</a> at Thu Jun 20 2013 14:50:52 GMT-0700 (PDT)</div>
+</div>
+</body>
+
+<script src="../prettify.js"></script>
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script>
+
+    YUI().use('datatable', function (Y) {
+
+        var formatters = {
+          pct: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              try {
+                  return o.value.toFixed(2) + '%';
+              } catch (ex) { return o.value + '%'; }
+          },
+          html: function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.record.get(o.column.key + '_html');
+          }
+        },
+          defaultFormatter = function (o) {
+              o.className += o.record.get('classes')[o.column.key];
+              return o.value;
+          };
+
+        function getColumns(theadNode) {
+            var colNodes = theadNode.all('tr th'),
+                cols = [],
+                col;
+            colNodes.each(function (colNode) {
+                col = {
+                    key: colNode.getAttribute('data-col'),
+                    label: colNode.get('innerHTML') || ' ',
+                    sortable: !colNode.getAttribute('data-nosort'),
+                    className: colNode.getAttribute('class'),
+                    type: colNode.getAttribute('data-type'),
+                    allowHTML: colNode.getAttribute('data-html') === 'true' || colNode.getAttribute('data-fmt') === 'html'
+                };
+                col.formatter = formatters[colNode.getAttribute('data-fmt')] || defaultFormatter;
+                cols.push(col);
+            });
+            return cols;
+        }
+
+        function getRowData(trNode, cols) {
+            var tdNodes = trNode.all('td'),
+                    i,
+                    row = { classes: {} },
+                    node,
+                    name;
+            for (i = 0; i < cols.length; i += 1) {
+                name = cols[i].key;
+                node = tdNodes.item(i);
+                row[name] = node.getAttribute('data-value') || node.get('innerHTML');
+                row[name + '_html'] = node.get('innerHTML');
+                row.classes[name] = node.getAttribute('class');
+                //Y.log('Name: ' + name + '; Value: ' + row[name]);
+                if (cols[i].type === 'number') { row[name] = row[name] * 1; }
+            }
+            //Y.log(row);
+            return row;
+        }
+
+        function getData(tbodyNode, cols) {
+            var data = [];
+            tbodyNode.all('tr').each(function (trNode) {
+                data.push(getRowData(trNode, cols));
+            });
+            return data;
+        }
+
+        function replaceTable(node) {
+            if (!node) { return; }
+            var cols = getColumns(node.one('thead')),
+                data = getData(node.one('tbody'), cols),
+                table,
+                parent = node.get('parentNode');
+
+            table = new Y.DataTable({
+                columns: cols,
+                data: data,
+                sortBy: 'file'
+            });
+            parent.set('innerHTML', '');
+            table.render(parent);
+        }
+
+        Y.on('domready', function () {
+            replaceTable(Y.one('div.coverage-summary table'));
+            if (typeof prettyPrint === 'function') {
+                prettyPrint();
+            }
+        });
+    });
+</script>
+</html>
