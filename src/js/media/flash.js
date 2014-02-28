@@ -258,12 +258,15 @@ vjs.Flash.prototype.pause = function(){
 };
 
 vjs.Flash.prototype.src = function(src){
+  if (src === undefined) {
+    return this.currentSrc();
+  }
+
   if (vjs.Flash.isStreamingSrc(src)) {
     src = vjs.Flash.streamToParts(src);
     this.setRtmpConnection(src.connection);
     this.setRtmpStream(src.stream);
-  }
-  else {
+  } else {
     // Make sure source URL is abosolute.
     src = vjs.getAbsoluteURL(src);
     this.el_.vjs_src(src);
@@ -279,6 +282,7 @@ vjs.Flash.prototype.src = function(src){
 
 vjs.Flash.prototype.currentSrc = function(){
   var src = this.el_.vjs_getProperty('currentSrc');
+
   // no src, check and see if RTMP
   if (src == null) {
     var connection = this.rtmpConnection(),
@@ -318,8 +322,8 @@ vjs.Flash.prototype.enterFullScreen = function(){
 // Create setters and getters for attributes
 var api = vjs.Flash.prototype,
     readWrite = 'rtmpConnection,rtmpStream,preload,defaultPlaybackRate,playbackRate,autoplay,loop,mediaGroup,controller,controls,volume,muted,defaultMuted'.split(','),
-    readOnly = 'error,currentSrc,networkState,readyState,seeking,initialTime,duration,startOffsetTime,paused,played,seekable,ended,videoTracks,audioTracks,videoWidth,videoHeight,textTracks'.split(',');
-    // Overridden: buffered, currentTime
+    readOnly = 'error,networkState,readyState,seeking,initialTime,duration,startOffsetTime,paused,played,seekable,ended,videoTracks,audioTracks,videoWidth,videoHeight,textTracks'.split(',');
+    // Overridden: buffered, currentTime, currentSrc
 
 /**
  * @this {*}
