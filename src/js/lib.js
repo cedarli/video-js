@@ -573,7 +573,7 @@ vjs.createTimeRange = function(start, end){
  * @private
  */
 vjs.get = function(url, onSuccess, onError, withCredentials){
-  var fileUrl, request, a, crossOrigin;
+  var fileUrl, request, urlInfo, winLoc, crossOrigin;
 
   onError = onError || function(){};
 
@@ -589,9 +589,11 @@ vjs.get = function(url, onSuccess, onError, withCredentials){
 
   request = new XMLHttpRequest();
 
-  // check the host of the url
-  a = vjs.createEl('a', { href: url });
-  crossOrigin = (a.origin !== window.location.origin);
+  urlInfo = vjs.parseUrl(url);
+  winLoc = window.location;
+  // check if url is for another domain/origin
+  // ie8 doesn't know location.origin, so we won't rely on it here
+  crossOrigin = (urlInfo.protocol + urlInfo.host) !== (winLoc.protocol + winLoc.host);
 
   // Use XDomainRequest for IE if XMLHTTPRequest2 isn't available
   // 'withCredentials' is only available in XMLHTTPRequest2
@@ -608,7 +610,7 @@ vjs.get = function(url, onSuccess, onError, withCredentials){
 
   // XMLHTTPRequest
   } else {
-    fileUrl = (a.protocol == 'file:' || window.location.protocol == 'file:');
+    fileUrl = (urlInfo.protocol == 'file:' || winLoc.protocol == 'file:');
 
     request.onreadystatechange = function() {
       if (request.readyState === 4) {
@@ -683,6 +685,48 @@ vjs.getAbsoluteURL = function(url){
   }
 
   return url;
+};
+
+
+/**
+ * Resolve and parse the elements of a URL
+ * @param  {String} url The url to parse
+ * @return {Object}     An object of url details
+ */
+vjs.parseUrl = function(url) {
+  var div, a, addToBody, props, details;
+
+  props = ['protocol', 'hostname', 'port', 'pathname', 'search', 'hash', 'host'];
+
+  // add the url to an anchor and let the browser parse the URL
+  a = vjs.createEl('a', { href: url });
+
+  // IE8 (and 9?) Fix
+  // ie8 doesn't parse the URL correctly until the anchor is actually
+  // added to the body, and an innerHTML is needed to trigger the parsing
+  addToBody = (a.host === '' && a.protocol !== 'file:');
+  if (addToBody) {
+    div = vjs.createEl('div');
+    div.innerHTML = '<a href="'+url+'"></a>';
+    a = div.firstChild;
+    // prevent the div from affecting layout
+    div.setAttribute('style', 'display:none; position:absolute;');
+    document.body.appendChild(div);
+  }
+
+  // Copy the specific URL properties to a new object
+  // This is also needed for IE8 because the anchor loses its
+  // properties when it's removed from the dom
+  details = {};
+  for (var i = 0; i < props.length; i++) {
+    details[props[i]] = a[props[i]];
+  }
+
+  if (addToBody) {
+    document.body.removeChild(div);
+  }
+
+  return details;
 };
 
 // usage: log('inside coolFunc',this,arguments);
